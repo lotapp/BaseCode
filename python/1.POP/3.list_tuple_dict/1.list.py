@@ -46,7 +46,7 @@ infos_list=["C#","JavaScript"]#[]
 # print(infos_list)
 
 # # del xxx[index] 删除指定下标元素
-# del infos_list[1]
+# del infos_list[1] #没有返回值
 # print(infos_list)
 # # del infos_list[10] #不存在就报错
 
