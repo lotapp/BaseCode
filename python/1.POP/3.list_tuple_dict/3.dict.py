@@ -27,6 +27,11 @@ infos_dict={"name":"dnt","web":"dkill.net"}
 # print(infos_dict)
 
 # # 删除
+# 要删除一个key，用pop(key)方法，对应的value也会从dict中删除
+infos_dict.pop("wechat") #返回key对应的值
+print(infos_dict)
+# infos_dict.pop("wechat") #key不存在，则报错
+
 # del infos_dict["name"]
 # #del infos_dict["dog"] #不存在就报错
 # print(infos_dict)
@@ -42,9 +47,14 @@ infos_dict={"name":"dnt","web":"dkill.net"}
 infos_dict["name"]
 # infos_dict["mmd"] #查不到就异常
 
+# 要避免key不存在的错误，有两种办法
+# 一是通过in判断key是否存在：
+print("mmd" in infos_dict)
 
+# 二是通过dict提供的get()方法
 infos_dict.get("name")
-infos_dict.get("mmd")#查不到不会异常
+print(infos_dict.get("mmd"))#如果key不存在，返回None
+print(infos_dict.get("mmd",-1))#也可以返回自己指定的value
 
 # 查看帮助
 # help(infos_dict)
