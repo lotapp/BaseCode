@@ -5,11 +5,12 @@
 # # count index
 # print(test_tuple.count("加息"))
 # print(test_tuple.index("萌萌哒"))#没有find方法
-# # 注意是左闭右开区间==>[1,4)
+# # # 注意是左闭右开区间==>[1,4)
 # # print(test_tuple.index("加息", 1, 4))#查不到报错：ValueError: tuple.index(x): x not in tuple
 
 # #下标取
 # print(test_tuple[0])
+# print(test_tuple[-1])
 
 # # 遍历
 # for item in test_tuple:
@@ -20,7 +21,7 @@
 #     print(test_tuple[i])
 #     i+=1
 
-# # 扩展：
+# # 定义的扩展：
 # test_tuple1=(1,) #(1)就不是元祖了
 # test_tuple2=(2)
 # print(type(test_tuple1))
@@ -38,7 +39,16 @@
 # print(c)
 # print(d)
 
-# 扩展：多维元组
-some_tuples=[(2,"萌萌哒"),(4,3)]
-some_tuples[0]
-some_tuples[0][1]
+# # 扩展：多维元组
+# some_tuples=[(2,"萌萌哒"),(4,3)]
+# some_tuples[0]
+# some_tuples[0][1]
+
+# # 扩展：可变的元组（元组在定义的时候就不能变了，但是可以通过类似这种方式来改变）
+# value_tuple = ("a", "1", ["mmd"],{"name":"dnt"})
+
+# value_tuple[2].append("test")
+# print(value_tuple)
+
+# value_tuple[3]["wechat"]="dotnetcrazy"
+# print(value_tuple)
