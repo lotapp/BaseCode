@@ -1,6 +1,4 @@
-class Student:
-    def __del__(slef):
-        print("你被干掉了")
+from my_class import Student
 
 s1=Student()
 s2=Student()
