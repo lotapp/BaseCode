@@ -8,6 +8,11 @@ def show_infos(name,age):
     """打印name和age"""
     print("我叫",name,"我的年龄是",age)#这种输出方式会自动以空格连接字符串
 
+# 定义一个默认参数的函数
+def default_param(name,age=23):
+    """age默认为23"""
+    print("我叫",name,"我的年龄是",age)#这种输出方式会自动以空格连接字符串
+
 # 定义有返回值的函数
 def div_have_return(a,b):
     """计算a+b，返回计算结果"""#函数文档说明
@@ -23,6 +28,9 @@ get_name()
 
 # 调用一个含参数的函数
 show_infos("李四",22)#实参
+
+# 定义一个默认参数的函数
+default_param("张三")
 
 # 调用有返回值的函数
 result=div_have_return(1,2)
