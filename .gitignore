@@ -328,3 +328,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+############################# add new gitignore ############################
+# Jupyter Notebook
+.ipynb_checkpoints
