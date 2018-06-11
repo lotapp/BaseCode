@@ -60,3 +60,7 @@ print(infos_dict.get("mmd",-1))#也可以返回自己指定的value
 # help(infos_dict)
 len(infos_dict) #有几对key,value 
 # infos_dict.has_key("name") #这个是python2里面的
+
+# 补充：dict内部存放的顺序和key放入的顺序是没有关系的
+# dict的key必须是不可变对象（dict根据key进行hash算法,来计算value的存储位置
+# 如果每次计算相同的key得出的结果不同，那dict内部就完全混乱了）
