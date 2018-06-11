@@ -90,6 +90,7 @@ infos_list=["C#","JavaScript"]#[]
 # # #查询王二麻子的索引
 # print(names_list.index("王二麻子"))
 
+## 统计
 # print(names_list.count("大舅子")) 
 # print(names_list.count("逆天")) 
 ###########################################################
@@ -125,3 +126,8 @@ infos_list=["C#","JavaScript"]#[]
 # # b=[5,6]
 # # a=a.append(b)#a.append(b)没有返回值
 # # print(a)#None
+
+# range扩展～创建一个整数列表
+# range(5)生成的序列是从0开始小于5的整数～[0,5)
+range_list=list(range(5))
+print(range_list)
