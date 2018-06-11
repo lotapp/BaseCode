@@ -129,6 +129,6 @@ infos_list=["C#","JavaScript"]#[]
 
 # range扩展～创建一个整数列表
 # range(5)生成的序列是从0开始小于5的整数～[0,5)
-# range(1,5)生成的序列是从1开始小于5的整数～[0,5)
+# range(1,5)生成的序列是从1开始小于5的整数～[1,5)
 range_list=list(range(1,5))
 print(range_list)
