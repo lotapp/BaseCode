@@ -1,3 +1,13 @@
+# 递归案例
+# 利用切片操作，实现一个trim()函数，去除字符串首尾的空格
+# def trim(s):
+#     if s[:1] != ' ' and s[-1:] != ' ':
+#         return s
+#     elif s[:1] == ' ':
+#         return trim(s[1:])
+#     else：
+#         return trim(s[:-1])
+
 # 可变类型与不可变类型的变量分别作为函数参数时
 #
 def default_some_params(nums):
