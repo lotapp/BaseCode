@@ -73,7 +73,7 @@ print("计算结果为",result)
 
 # 调用含有多个返回值的函数
 sum,dvalue=div_have_returns(1,2)
-print("sum:",result,"D-value:",dvalue)
+print("sum:",sum,"D-value:",dvalue)
 
 ############# 传入多个参数系列 #############
 # 元组传入
