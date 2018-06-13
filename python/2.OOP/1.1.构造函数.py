@@ -22,9 +22,3 @@ class Student:
 
 xiaowang=Student("小王",22)
 xiaowang.show()
-
-# #TypeError: __init__() missing 2 required positional arguments: 'name' and 'age'
-# xiaoli=Student() #如果不定义默认的无参构造函数也一样报错（和C#一样）
-# xiaoli.name="小李"
-# xiaoli.age=18
-# xiaoli.show()
