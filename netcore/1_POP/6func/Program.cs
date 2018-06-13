@@ -7,6 +7,11 @@ namespace _6func
     {
         static void Main(string[] args)
         {
+            // 交换两数新方式
+            int x = 3, y = 5;
+            (x, y) = (y, x);
+            System.Console.WriteLine("{0},{1}", x, y);
+            
             #region Base
             // # 定义一个空函数：
             Method();
