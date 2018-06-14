@@ -3,11 +3,14 @@
 
 ---
 # 说下Markdown语法
+之前说过<a href="https://www.cnblogs.com/dunitian/p/5041062.html" target="_blank">用word写文章</a>，这次说说Markdown写文章（推荐）
+
 逆天推荐使用VSCode编写
 ![](https://images2018.cnblogs.com/blog/1127869/201806/1127869-20180614105020550-1158788761.png)
 
 装这个插件写作更方便：
 ![](https://images2018.cnblogs.com/blog/1127869/201806/1127869-20180614105155394-2020058665.png)
+
 
 <a name="divtop"></a>
 内含：锚点使用，使用HTML，新页面跳转，目录生成
