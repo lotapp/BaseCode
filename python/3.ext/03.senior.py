@@ -1,13 +1,13 @@
 # 参考链接：http://sina.lt/f7Pv
-###################### 迭代系列 ##############################
+# ##################### 迭代系列 ##############################
 # 当我们使用for循环时，只要作用于一个可迭代对象，for循环就可以正常运行，而我们不太关心该对象究竟是list还是其他数据类型
 # 如何判断一个对象是可迭代对象呢？方法是通过collections模块的Iterable类型判断：
 
 from collections import Iterable
 
-isinstance('abc', Iterable) # str是否可迭代
-isinstance([1,2,3], Iterable) # list是否可迭代
-isinstance(123, Iterable) # 整数是否可迭代 False
+isinstance('abc', Iterable)  # str是否可迭代
+isinstance([1, 2, 3], Iterable)  # list是否可迭代
+isinstance(123, Iterable)  # 整数是否可迭代 False
 
 # 如果要对list实现类似Java那样的下标循环怎么办？
 # Python内置的enumerate函数可以把一个list变成索引-元素对，这样就可以在for循环中同时迭代索引和元素本身：
@@ -20,36 +20,37 @@ for x, y in [(1, 1), (2, 4), (3, 9)]:
 
 # 请使用迭代查找一个list中最小和最大值，并返回一个tuple：
 
-############################## 列表生成系列 ##############################
+# ############################# 列表生成系列 ##############################
 # 生成list [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 # 生成[1x1, 2x2, 3x3, , 10x10]
-#以前：
+# 以前：
 div_list = []
 for x in range(1, 11):
     div_list.append(x * x)
 
 # 现在(列表生成式则可以用一行语句代替循环生成上面的list)：
-div_list=[x * x for x in range(1, 11)]
+div_list = [x * x for x in range(1, 11)]
 
 # for循环后面还可以加上if判断，这样我们就可以筛选出仅偶数的平方：
-[x * x for x in range(1, 11) if x % 2 == 0] #[4, 16, 36, 64, 100]
+[x * x for x in range(1, 11) if x % 2 == 0]  #[4, 16, 36, 64, 100]
 
 # 为数学而生（还可以使用两层循环，可以生成全排列）：
-[m + n for m in 'ABC' for n in 'XYZ'] #['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
+[m + n for m in 'ABC'
+ for n in 'XYZ']  #['AX', 'AY', 'AZ', 'BX', 'BY', 'BZ', 'CX', 'CY', 'CZ']
 
 # 列出当前目录下的所有文件和目录名
-import os # 导入os模块，模块的概念后面讲到
-[d for d in os.listdir('.')] # os.listdir可以列出文件和目录
+import os  # 导入os模块，模块的概念后面讲到
+[d for d in os.listdir('.')]  # os.listdir可以列出文件和目录
 
 # for循环其实可以同时使用两个甚至多个变量，比如dict的items()可以同时迭代key和value：
-d = {'x': 'A', 'y': 'B', 'z': 'C' }
+d = {'x': 'A', 'y': 'B', 'z': 'C'}
 for k, v in d.items():
     print(k, '=', v)
 
 # 列表生成式也可以使用两个变量来生成list
-d = {'x': 'A', 'y': 'B', 'z': 'C' }
-[k + '=' + v for k, v in d.items()] #['y=B', 'x=A', 'z=C']
+d = {'x': 'A', 'y': 'B', 'z': 'C'}
+[k + '=' + v for k, v in d.items()]  #['y=B', 'x=A', 'z=C']
 
 # 把一个list中所有的字符串变成小写
 L = ['Hello', 'World', 'IBM', 'Apple']
@@ -66,12 +67,12 @@ L = ['Hello', 'World', 18, 'Apple', None]
 # 使用内建的isinstance函数可以判断一个变量是不是字符串
 x = 'abc'
 y = 123
-isinstance(x, str) #True
-isinstance(y, str) #False
+isinstance(x, str)  #True
+isinstance(y, str)  #False
 
 # 请修改列表生成式，通过添加if语句保证列表生成式能正确地执行：
 
-############################## 列表生成系列 ##############################
+# ############################# 列表生成系列 ##############################
 # 通过列表生成式，我们可以直接创建一个列表。但是，受到内存限制，列表容量肯定是有限的。
 # 而且，创建一个包含100万个元素的列表，不仅占用很大的存储空间，如果我们仅仅需要访问前面几个元素，那后面绝大多数元素占用的空间都白白浪费了。
 # 所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？
@@ -88,7 +89,7 @@ g = (x * x for x in range(10))
 # 如果要一个一个打印出来，可以通过next()函数获得generator的下一个返回值
 # next(g)
 # next(g)
-# 
+#
 # next(g) #最后一个
 # next(g)
 # Traceback (most recent call last):
@@ -102,9 +103,10 @@ g = (x * x for x in range(10))
 for n in g:
     print(n)
 
+
 # generator非常强大。如果推算的算法比较复杂，用类似列表生成式的for循环无法实现的时候，还可以用函数来实现。
 # 比如，著名的斐波拉契数列（Fibonacci），除第一个和第二个数外，任意一个数都可由前两个数相加得到：
-# 1, 1, 2, 3, 5, 8, 13, 21, 34, 
+# 1, 1, 2, 3, 5, 8, 13, 21, 34,
 # 斐波拉契数列用列表生成式写不出来，但是，用函数把它打印出来却很容易：
 def fib(max):
     n, a, b = 0, 0, 1
@@ -113,6 +115,8 @@ def fib(max):
         a, b = b, a + b
         n = n + 1
     return 'ok'
+
+
 # 注意，赋值语句： a, b = b, a + b
 # 相当于：
 # tuple = (b, a + b)
@@ -122,6 +126,7 @@ def fib(max):
 
 # 上面的函数可以输出斐波那契数列的前N个数：
 fib(6)
+
 
 # 仔细观察，可以看出，fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。
 # 也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为yield b就可以了：
@@ -133,22 +138,27 @@ def fib(max):
         n = n + 1
     return 'ok'
 
+
 # 这就是定义generator的另一种方法。如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：
 f = fib(6)
+
 # f <generator object fib at 0x104feaaa0>
 
 # 这里，最难理解的就是generator和函数的执行流程不一样。
 # 函数是顺序执行，遇到return语句或者最后一行函数语句就返回。
 # 而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行
 
+
 # 举个简单的例子，定义一个generator，依次返回数字1，3，5：
 def odd():
     print('step 1')
     yield 1
     print('step 2')
-    yield(3)
+    yield (3)
     print('step 3')
-    yield(5)
+    yield (5)
+
+
 # 调用该generator时，首先要生成一个generator对象，然后用next()函数不断获得下一个返回值：
 o = odd()
 next(o)
@@ -201,8 +211,10 @@ while True:
 # 1   5   10  10  5   1
 # 把每一行看做一个list，试写一个generator，不断输出下一行的list：
 
+
 def triangles():
     pass
+
 
 # 小结
 # generator是非常强大的工具，在Python中，可以简单地把列表生成式改成generator，也可以通过函数实现复杂逻辑的generator。
@@ -212,12 +224,12 @@ def triangles():
 # 请注意区分普通函数和generator函数，普通函数调用直接返回结果：
 
 r = abs(6)
-r#6
+r  # 6
 # generator函数的“调用”实际返回一个generator对象：
 g = fib(6)
-g#<generator object fib at 0x1022ef948>
+g  # <generator object fib at 0x1022ef948>
 
-####################### 迭代器 ##################################
+# ###################### 迭代器 ##################################
 # 我们已经知道，可以直接作用于for循环的数据类型有以下几种：
 # 一类是集合数据类型，如list、tuple、dict、set、str等；
 # 一类是generator，包括生成器和带yield的generator function。
@@ -225,11 +237,11 @@ g#<generator object fib at 0x1022ef948>
 
 # 可以使用isinstance()判断一个对象是否是Iterable对象：
 from collections import Iterable
-isinstance([], Iterable)# True
-isinstance({}, Iterable)# True
-isinstance('abc', Iterable)# True
-isinstance((x for x in range(10)), Iterable)# True
-isinstance(100, Iterable)# False
+isinstance([], Iterable)  # True
+isinstance({}, Iterable)  # True
+isinstance('abc', Iterable)  # True
+isinstance((x for x in range(10)), Iterable)  # True
+isinstance(100, Iterable)  # False
 
 # 而生成器不但可以作用于for循环，还可以被next()函数不断调用并返回下一个值，直到最后抛出StopIteration错误表示无法继续返回下一个值了。
 # 可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。
@@ -247,8 +259,8 @@ isinstance('abc', Iterator)
 
 # 生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
 # 把list、dict、str等Iterable变成Iterator可以使用iter()函数：
-isinstance(iter([]), Iterator)#True
-isinstance(iter('abc'), Iterator)#True
+isinstance(iter([]), Iterator)  #True
+isinstance(iter('abc'), Iterator)  #True
 
 # 你可能会问，为什么list、dict、str等数据类型不是Iterator？
 # 这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。

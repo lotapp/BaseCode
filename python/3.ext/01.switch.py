@@ -24,10 +24,10 @@
 # 在 Python 中字典映射也可以包含函数或者 lambda 表达式：
 # def zero():
 #     return "zero"
- 
+
 # def one():
 #     return "one"
- 
+
 # def numbers_to_functions_to_strings(argument):
 #     switcher = {
 #         0: zero,
@@ -43,12 +43,12 @@
 #         method_name = 'number_' + str(argument)
 #         method = getattr(self, method_name, lambda: "nothing")
 #         return method()
- 
+
 #     def number_0(self):
 #         return "zero"
- 
+
 #     def number_1(self):
 #         return "one"
- 
+
 #     def number_2(self):
 #         return "two"

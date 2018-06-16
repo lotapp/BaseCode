@@ -1,4 +1,4 @@
-age=19
+age = 19
 
-if age>=18:
-	print("成年了")
+if age >= 18:
+    print("成年了")

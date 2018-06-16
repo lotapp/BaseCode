@@ -1,4 +1,4 @@
-infos_dict={"name":"dnt","web":"dkill.net"}
+infos_dict = {"name": "dnt", "web": "dkill.net"}
 
 # # 遍历
 # for item in infos_dict.keys():
@@ -28,7 +28,7 @@ infos_dict={"name":"dnt","web":"dkill.net"}
 
 # # 删除
 # 要删除一个key，用pop(key)方法，对应的value也会从dict中删除
-infos_dict.pop("wechat") #返回key对应的值
+infos_dict.pop("wechat")  # 返回key对应的值
 print(infos_dict)
 # infos_dict.pop("wechat") #key不存在，则报错
 
@@ -53,12 +53,12 @@ print("mmd" in infos_dict)
 
 # 二是通过dict提供的get()方法
 infos_dict.get("name")
-print(infos_dict.get("mmd"))#如果key不存在，返回None
-print(infos_dict.get("mmd",-1))#也可以返回自己指定的value
+print(infos_dict.get("mmd"))  # 如果key不存在，返回None
+print(infos_dict.get("mmd", -1))  # 也可以返回自己指定的value
 
 # 查看帮助
 # help(infos_dict)
-len(infos_dict) #有几对key,value 
+len(infos_dict)  # 有几对key,value
 # infos_dict.has_key("name") #这个是python2里面的
 
 # 补充：dict内部存放的顺序和key放入的顺序是没有关系的

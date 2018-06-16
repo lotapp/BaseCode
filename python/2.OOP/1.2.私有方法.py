@@ -1,34 +1,33 @@
 class Student:
-    def __init__(slef):
-        pass
-    def __init__(slef,name,age):
-        slef.set_name(name)
-        slef.set_age(age)
-    
-    def get_name(slef):
-        return slef._name
-    
-    def set_name(slef,name):
-        slef._name=name
+    def __init__(self, name, age):
+        self.set_name(name)
+        self.set_age(age)
 
-    def get_age(slef):
-        return slef._age
-    
-    def set_age(slef,age):
-        if age>0:
-            slef._age=age
+    def get_name(self):
+        return self._name
+
+    def set_name(self, name):
+        self._name = name
+
+    def get_age(self):
+        return self._age
+
+    def set_age(self, age):
+        if age > 0:
+            self._age = age
         else:
             print("age must > 0")
-    
-    def show(slef):
-        slef.__sleep(1)
-        print("name:%s,age:%d"%(slef._name,slef._age))
-    
-    def __sleep(slef,time):
+
+    def show(self):
+        self.__sleep(1)
+        print("name:%s,age:%d" % (self._name, self._age))
+
+    def __sleep(self, time):
         pass
-    
-zhangsan=Student("张三",20)
-zhangsan.show() #name:张三,age:20
+
+
+zhangsan = Student("张三", 20)
+zhangsan.show()  # name:张三,age:20
 
 # 私有方法就是在方法前面加两个下划线__
-# zhangsan.__sleep(1)# 私有的方法没法调 NameError: name '_Student__sleep' is not defined
+# zhangsan.__sleep(1)# 私有的方法没法调 NameError:name '_Student__sleep' is not defined

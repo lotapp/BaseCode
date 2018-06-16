@@ -1,7 +1,6 @@
 # # 只能查询，其他操作和列表差不多（不可变）
 # test_tuple=("萌萌哒",1,3,5,"加息","加息")
 
-
 # # count index
 # print(test_tuple.count("加息"))
 # print(test_tuple.index("萌萌哒"))#没有find方法

@@ -1,4 +1,4 @@
-test_str="ABCDabcdefacddbdf"
+test_str = "ABCDabcdefacddbdf"
 
 # -------------------------------------------------------------
 
@@ -50,7 +50,8 @@ test_str="ABCDabcdefacddbdf"
 # print(test_line_str2.split("\n"))#再提示一下，最后不是\n就和上面一样效果
 
 # # 扩展：
-# print("hi my name is dnt\t\n  m\n\t\n".split())#split()，默认按空字符切割(空格、\t、\n等等，不用担心返回'')
+# print("hi my name is dnt\t\n  m\n\t\n".split())
+# split()，默认按空字符切割(空格、\t、\n等等，不用担心返回'')
 
 # #partition,返回是元祖类型（后面会说的）,方式和find一样，找到第一个匹配的就罢工了
 # print(test_str.partition("cd"))#('ABCDab', 'cd', 'efacddbdf')
@@ -73,7 +74,8 @@ test_str="ABCDabcdefacddbdf"
 # print(start_end_str.endswith(".com"))
 # # -------------------------------------------------------------
 
-# # 大小写系:lower(字符串转换为小写),upper(字符串转换为大写),title(单词首字母大写),capitalize(第一个字符大写，其他变小写)
+# # 大小写系:lower(字符串转换为小写),upper(字符串转换为大写),
+# title(单词首字母大写),capitalize(第一个字符大写，其他变小写)
 # print(test_str)
 # print(test_str.upper())#ABCDABCDEFACDDBDF
 # print(test_str.lower())#abcdabcdefacddbdf

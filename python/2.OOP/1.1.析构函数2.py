@@ -1,17 +1,17 @@
 from my_class import Student
 
-s1=Student()
-s2=s1
+s1 = Student()
+s2 = s1
 
 del s1
 del s2
-print("-"*10)
+print("-" * 10)
 
 # 你被干掉了
 # ----------
 
 # # 程序退出的时候，在他运行期间所有占用资源归还操作系统
-# # 引用计数 
+# # 引用计数
 # import sys
 # s1=Student()
 # sys.getrefcount(s1) #（结果比实际引用大1）【你测也算进去了】
@@ -27,7 +27,5 @@ print("-"*10)
 # del s2
 # print("-"*10)
 
-
-
 # # del obj
-# # sys.getrefcount(obj) 
+# # sys.getrefcount(obj)

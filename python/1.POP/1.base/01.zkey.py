@@ -11,11 +11,10 @@ print(keyword.kwlist)
 # %f	浮点实数
 # %g	％f和％e 的简写
 # %G	％f和％E的简写
-num=9
+num = 9
 print("num=9,下面结果是对2的除，取余，取商操作：")
-print(num/2.0)
-print(num%2.0)
-print(num//2.0)
+print(num / 2.0)
+print(num % 2.0)
+print(num // 2.0)
 # 指数
-print("2^3=%d"%2**3)
-
+print("2^3=%d" % 2**3)

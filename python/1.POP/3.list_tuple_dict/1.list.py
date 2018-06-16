@@ -1,5 +1,5 @@
 # 定义一个列表，列表虽然可以存不同类型，一般我们把相同类型的值存列表里面，不同类型存字典里（key，value）
-infos_list=["C#","JavaScript"]#[]
+infos_list = ["C#", "JavaScript"]  # []
 
 # ###########################################################
 # # 遍历 for while
@@ -90,9 +90,9 @@ infos_list=["C#","JavaScript"]#[]
 # # #查询王二麻子的索引
 # print(names_list.index("王二麻子"))
 
-## 统计
-# print(names_list.count("大舅子")) 
-# print(names_list.count("逆天")) 
+# # 统计
+# print(names_list.count("大舅子"))
+# print(names_list.count("逆天"))
 ###########################################################
 # # 排序(sort, reverse 逆置)
 # num_list=[1,3,5,88,7]
@@ -130,17 +130,17 @@ infos_list=["C#","JavaScript"]#[]
 # range扩展～创建一个整数列表
 # range(5)生成的序列是从0开始小于5的整数～[0,5)
 # range(1,5)生成的序列是从1开始小于5的整数～[1,5)
-range_list=list(range(1,5))
+range_list = list(range(1, 5))
 print(range_list)
 
-###################### List切片系列 ##############################
+# ##################### List切片系列 ##############################
 # 列表的切片操作很有用，主要跟数据相关，实际应用中和dict（后面会讲）联合使用
 # python切片语法：[start_index:end_index:step] （end_index取不到）
-top100=list(range(1,101)) #[1,101) => 1~100
+top100 = list(range(1, 101))  # [1,101) => 1~100
 print(top100)
 
 # 取前10个元素
-top100[:10] #等价于：top100[0:10]
+top100[:10]  # 等价于：top100[0:10]
 
 # 取最后10个元素
 top100[-10:]
@@ -159,4 +159,4 @@ top100[::10]
 
 # 补充概念，str和tuple 也可以用切片操作哦～str上次说了，这次说下Tuple
 # 取前两个 返回元组
-(1,2,3,4,5)[:2]
+(1, 2, 3, 4, 5)[:2]
