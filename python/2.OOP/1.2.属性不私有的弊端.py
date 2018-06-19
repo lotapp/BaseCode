@@ -24,5 +24,5 @@ class Student:
 
 zhangsan = Student("张三", -20)
 zhangsan.show()  # name:张三,age:-20
-zhangsan.age = -1  # set_age方法形同虚设，我完全可以直接访问字段了（python引入私有属性的方式有点怪异，在属性前面加_，eg:1.3）
+zhangsan.age = -1  # set_age方法形同虚设，我完全可以直接访问字段了
 zhangsan.show()  # name:张三,age:-1
