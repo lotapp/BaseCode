@@ -1,10 +1,10 @@
-from my_class import Student
+from my_temp import Temp
 
-s1 = Student()
-s2 = Student()
+t1 = Temp()
+t2 = Temp()
 
-del s1
-del s2
+del t1
+del t2
 print("-" * 10)
 
 # 你被干掉了
