@@ -1,4 +1,4 @@
-class Student:
+class Student(object):
     def __init__(self, name, age):
         self.set_name(name)
         self.set_age(age)

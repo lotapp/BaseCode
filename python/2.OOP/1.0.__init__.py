@@ -20,7 +20,7 @@
 # print(zhangsan)  # 张三实例的内存地址：0x7fb6e8502d30
 
 
-class Student:
+class Student(object):
     # 初始化赋值
     def __init__(self, name, age):
         self.name = name

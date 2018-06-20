@@ -1,4 +1,4 @@
-class Student:
+class Student(object):
     def __init__(self, name, age):
         self.__name = name
         # 一般需要用到的属性都直接放在__init__里面了
