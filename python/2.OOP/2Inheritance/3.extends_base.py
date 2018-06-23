@@ -1,6 +1,28 @@
-
-
 # 调用父类的方法
-# 重写父类方法，子类和父类有同名方法
-# 当子类和父类都存在相同的run()方法时，我们说，子类的run()覆盖了父类的run()，在代码运行的时候，总是会调用子类的run()。这样，我们就获得了继承的另一个好处：多态
-# 判断一个变量是否是某个类型可以用isinstance()
+class Father(object):
+    def eat(self):
+        print("文雅的吃饭")
+
+
+class Son(Father):
+    def eat(self):
+        # 调用父类方法第1种（super().方法）
+        super().eat()
+
+
+class GrandSon(Son):
+    def eat(self):
+        # 调用父类方法第2种（记得传self）
+        Son.eat(self)
+
+
+def main():
+    xiaoming = Son()
+    xiaoming.eat()
+
+    xiaoli = GrandSon()
+    xiaoli.eat()
+
+
+if __name__ == '__main__':
+    main()
