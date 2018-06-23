@@ -1,0 +1,11 @@
+using System;
+
+namespace Polymorphism2
+{
+    /// <summary>
+    /// 猫科动物---子类必须实现父类抽象方法，如果不实现，那么该类也必须是抽象类
+    /// </summary>
+    public abstract class Feline : Animal
+    {
+    }
+}

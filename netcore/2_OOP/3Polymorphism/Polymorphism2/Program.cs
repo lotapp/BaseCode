@@ -6,7 +6,11 @@ namespace Polymorphism2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Animal[] animals = { new Dog(), new Cat() };
+            foreach (var item in animals)
+            {
+                item.Call();
+            }
         }
     }
 }

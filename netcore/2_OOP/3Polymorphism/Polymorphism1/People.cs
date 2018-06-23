@@ -1,6 +1,6 @@
 using System;
 
-namespace _03._1虚方法实现多态
+namespace Polymorphism1
 {
     public class Person
     {

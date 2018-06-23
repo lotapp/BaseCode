@@ -6,7 +6,11 @@ namespace Polymorphism3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IRun[] objs = { new Student(), new Cat() };
+            foreach (var item in objs)
+            {
+                item.Runing();
+            }
         }
     }
 }
