@@ -6,6 +6,7 @@ def main():
     with open("temp", "wb") as f:
         f.write("小明同学最爱刷碗\n小潘同学最爱打扫".encode())
 
+    # 打开磁盘二进制文件进行更新（读写）
     with open("temp", "r+b") as f:
         with mmap.mmap(f.fileno(), 0) as m:
             print("postion_index:%d" % m.tell())

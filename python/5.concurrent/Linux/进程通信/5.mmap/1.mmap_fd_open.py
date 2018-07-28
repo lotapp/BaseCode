@@ -4,9 +4,9 @@ import mmap
 
 def create_file(filename, size):
     """初始化一个文件，并把文件扩充到指定大小"""
-    with open(filename, "w") as f:
+    with open(filename, "wb") as f:
         f.seek(size - 1)  # 改变流的位置
-        f.write("\0")  # 在末尾写个`\0`，如果是wb二进制写入，就写入"\x00"
+        f.write(b"\x00")  # 在末尾写个`\0`
 
 
 def main():
