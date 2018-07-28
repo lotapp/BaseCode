@@ -26,6 +26,7 @@ def main():
         print(m[0:10])  # 取值
         print("postion_index:%d" % m.tell())
         print(m[:].decode())  # 全部读出来
+    print(m.closed)  # 查看mmap是否关闭
 
 
 if __name__ == '__main__':
