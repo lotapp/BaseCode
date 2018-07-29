@@ -15,6 +15,7 @@ def main():
         print(m.size())  # 查看文件大小
         m.resize(1024)  # 重新设置文件大小
         print(len(m))  # len也一样查看文件大小
+        print(m.read().translate(None, b"\x00"))  # 读取所有内容并把\0删除
         print(m.readline().decode())  # 读取一行，bytes转成str
         print(m.tell())  # 返回 m 对应文件的当前位置
         m.seek(0)  # 修改Postion位置
