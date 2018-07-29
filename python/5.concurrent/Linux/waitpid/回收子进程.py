@@ -13,7 +13,7 @@ def main():
         print("[父进程]PID：%d，PPID：%d" % (os.getpid(), os.getppid()))
         while True:
             try:
-                wpid, status = os.waitpid(0, os.WNOHANG)
+                wpid, status = os.waitpid(-1, os.WNOHANG)
                 if wpid > 0:
                     print("回收子进程wpid:%d,状态status:%d" % (wpid, status))
             except OSError:
