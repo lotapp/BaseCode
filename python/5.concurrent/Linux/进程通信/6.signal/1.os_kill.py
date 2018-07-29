@@ -3,8 +3,8 @@ import time
 import signal
 
 
-def print_info(signalnum, addr):
-    print("信号:%d准备弄我,我是小强我怕谁?(%s)" % (signalnum, addr))
+def print_info(signalnum, frame):
+    print("信号:%d准备弄我,我是小强我怕谁?(%s)" % (signalnum, frame))
 
 
 def main():

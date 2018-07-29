@@ -1,7 +1,7 @@
 import signal
 
 
-def print_info(signalnum, addr):
+def print_info(signalnum, frame):
     print("死前留言：我被信号%d弄死了，记得替我报仇啊！" % signalnum)
 
 
