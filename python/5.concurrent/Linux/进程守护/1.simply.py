@@ -34,7 +34,7 @@ def is_restart(p_script):
         return False
 
 
-def heartbeat(signalnum, addr):
+def heartbeat(signalnum, frame):
     """心跳检查"""
     p_name = "test.py"
     p_script = "python3 ./test.py"

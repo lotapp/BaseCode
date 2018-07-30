@@ -19,7 +19,7 @@ def main():
     # 4. 重置文件掩码（获取777权限）
     os.umask(0)
 
-    # 5. 关闭文件描述符（如果写日志就重定向一下）
+    # 5. 关闭文件描述符（如果写日志也可以重定向一下）
     os.close(stdin.fileno())
     os.close(stdout.fileno())
     os.close(stderr.fileno())

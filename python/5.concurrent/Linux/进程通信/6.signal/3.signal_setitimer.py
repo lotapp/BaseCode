@@ -7,7 +7,7 @@ def say_hai(signalnum, frame):
 
 
 def main():
-    # 捕捉信号（在定时器前后都没事）
+    # 捕捉信号（在前面最好，不然容易漏捕获）
     signal.signal(signal.SIGALRM, say_hai)
     # 设置定时器，第一次1s后执行，以后都3s执行一次
     signal.setitimer(signal.ITIMER_REAL, 1, 3)
