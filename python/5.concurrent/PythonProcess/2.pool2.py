@@ -1,5 +1,5 @@
 import time
-from multiprocessing import Pool
+from multiprocessing import Pool, TimeoutError
 
 
 def test(x):
@@ -14,8 +14,8 @@ def main():
     print(task)
     try:
         print(task.get(timeout=1))
-    except Exception:
-        print("超时了～")
+    except TimeoutError as ex:
+        print("超时了～", ex)
 
 
 if __name__ == '__main__':
