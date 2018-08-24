@@ -1,20 +1,23 @@
-from threading import Thread
-import time
-def foo():
-    print(123)
-    time.sleep(1)
-    print("end123")
+from multiprocessing.dummy import Pool as ThreadPool
 
-def bar():
-    print(456)
-    time.sleep(3)
-    print("end456")
+num = 0  # def global num
 
 
-t1=Thread(target=foo)
-t2=Thread(target=bar)
+def test(i):
+    print(f"子进程：{i}")
+    global num
+    for i in range(100000):
+        num += 1
 
-t1.daemon=True
-t1.start()
-t2.start()
-print("main-------")
+
+def main():
+    p = ThreadPool()
+    p.map_async(test, list(range(5)))
+    p.close()
+    p.join()
+
+    print(num)  # 应该是500000，发生了数据混乱，结果少了很多
+
+
+if __name__ == '__main__':
+    main()
