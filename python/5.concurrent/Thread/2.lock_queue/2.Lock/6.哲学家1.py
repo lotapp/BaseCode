@@ -1,6 +1,6 @@
 from time import sleep
 from contextlib import contextmanager  # 引入上下文管理器
-from multiprocessing.dummy import Pool as ThreadPool, Lock, current_process as current_thread
+from multiprocessing.dummy import threading
 
 
 @contextmanager
@@ -22,21 +22,25 @@ def lock_manager(*args):
 def eat(l_lock, r_lock):
     while True:
         with lock_manager(l_lock, r_lock):
-            print(f"{current_thread().name}，正在吃面")
-            sleep(0.5)
+            print(f"{threading.current_thread().name}，正在吃面")
+            sleep(0.01)
 
 
 def main():
     resource = 5  # 5个筷子，5个哲学家
-    locks = [Lock() for i in range(resource)]  # 几个资源几个锁
-    
-    p = ThreadPool(resource)  # 让线程池里面有5个线程（默认是cup核数）
-    for i in range(resource):
-        # 抢左手筷子（locks[i]）和右手的筷子（locks[(i + 1) % resource]）
-        # 举个例子更清楚：i=0 ==> 0,1；i=4 ==> 4,0
-        p.apply_async(eat, args=(locks[i], locks[(i + 1) % resource]))
-    p.close()
-    p.join()
+    locks = [threading.Lock() for i in range(resource)]  # 几个资源几个锁
+
+    # 抢左手筷子（locks[i]）和右手的筷子（locks[(i + 1) % resource]）
+    # 举个例子更清楚：i=0 ==> 0,1；i=4 ==> 4,0
+    tasks = [
+        threading.Thread(
+            target=eat, args=(locks[i], locks[(i + 1) % resource]))
+        for i in range(resource)
+    ]
+    for t in tasks:
+        t.start()
+    for t in tasks:
+        t.join()
 
 
 if __name__ == '__main__':
