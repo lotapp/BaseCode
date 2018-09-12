@@ -6,7 +6,7 @@ z_lock = Lock()
 print(f"是否相等：{m_lock==z_lock}\n{m_lock}\n{z_lock}")  # 地址不一样
 
 m_code = hash(m_lock)
-z_code = hash(m_lock)
+z_code = hash(z_lock)
 print(f"是否相等：{m_code==z_code}\n{m_code}\n{z_code}")  # 值一样
 
 # Java可以使用：identityhashcode
