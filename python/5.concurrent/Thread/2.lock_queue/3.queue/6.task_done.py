@@ -1,3 +1,4 @@
+from time import sleep
 from multiprocessing.dummy import threading, Queue
 
 
@@ -7,6 +8,7 @@ def consumer(queue):
         print(f"[消费者]消费商品{data}号")
         # 通知Queue完成任务了
         queue.task_done()
+        sleep(0.1)
 
 
 def producer(queue):
@@ -24,7 +26,8 @@ def main():
     ]
     # 启动两个线程
     for t in t_list:
-        t.setDaemon(True)  # 设置后台线程，就算是死循环当主线程退出的时候也会退出的
+        # 设置后台线程，就算是死循环当主线程退出的时候也会退出的
+        t.setDaemon(True)  # 进程是daemon属性，t.daemon=True
         t.start()
     # 等待所有任务完成
     queue.join()  # 你可以把这句话注释掉看输出
