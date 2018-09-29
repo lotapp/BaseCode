@@ -332,3 +332,4 @@ ASALocalRun/
 ############################# add new gitignore ############################
 # Jupyter Notebook
 .ipynb_checkpoints
+.vscode
