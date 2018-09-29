@@ -332,4 +332,9 @@ ASALocalRun/
 ############################# add new gitignore ############################
 # Jupyter Notebook
 .ipynb_checkpoints
+# Python重命名加的扩展
+.ropeproject
+# VSCode 配置文件
 .vscode
+# PyCharm 配置文件
+.idea
