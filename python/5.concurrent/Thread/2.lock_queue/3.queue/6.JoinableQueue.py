@@ -1,4 +1,4 @@
-from multiprocessing.dummy import threading, JoinableQueue
+from multiprocessing import Process, JoinableQueue
 
 
 def consumer(queue):
@@ -19,8 +19,7 @@ def main():
     queue = JoinableQueue()
     # 开启生产消费者线程任务
     t_list = [
-        threading.Thread(target=func, args=(queue, ))
-        for func in (producer, consumer)
+        Process(target=func, args=(queue, )) for func in (producer, consumer)
     ]
     # 启动两个线程
     for t in t_list:
@@ -28,7 +27,7 @@ def main():
         t.start()
     # 等待所有任务完成
     # queue.join()  # 你可以把这句话注释掉看输出
-    print(f"当前队列未完成的数量：{queue.unfinished_tasks}")
+    # print(f"当前队列未完成的数量：{queue.}")
 
 
 if __name__ == '__main__':

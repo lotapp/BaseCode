@@ -1,4 +1,4 @@
-from multiprocessing.dummy import threading, Queue  #, JoinableQueue as Queue
+from multiprocessing.dummy import threading, Queue
 
 
 def consumer(queue):
