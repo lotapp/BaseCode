@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace testGIL
 {
-    class Program
+class Program
     {
         static void Main(string[] args)
         {
@@ -15,7 +15,7 @@ namespace testGIL
         }
         static void Test(int i)
         {
-            System.Console.WriteLine($"启动一个线程～");
+            System.Console.WriteLine($"启动线程{i}");
             while (true) { }
         }
     }
