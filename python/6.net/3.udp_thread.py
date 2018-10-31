@@ -24,10 +24,10 @@ def main():
         pool = ThreadPool()
 
         # 接收消息
-        pool.apply_async(recv_msg, args=(udp_socket,))
+        pool.apply_async(recv_msg, args=(udp_socket, ))
 
         # 发送消息
-        pool.apply_async(send_msg, args=(udp_socket,))
+        pool.apply_async(send_msg, args=(udp_socket, ))
 
         pool.close()  # 不再添加任务
         pool.join()  # 等待线程池执行完毕
