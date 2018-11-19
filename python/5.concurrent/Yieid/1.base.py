@@ -18,6 +18,9 @@ class MyArray(Iterable):
 
 
 def main():
+    # list转迭代器
+    print(isinstance(iter([]), Iterator))
+
     # 可迭代
     print(isinstance(MyArray(), Iterable))
     # 迭代器也是可迭代的
