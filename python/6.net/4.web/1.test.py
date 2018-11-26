@@ -10,10 +10,10 @@ def main():
         # 监听
         tcp_socket.listen()
         # 等待
-        client_socket, address = tcp_socket.accept()
+        client_socket, client_address = tcp_socket.accept()
         # 收发消息
         with client_socket:
-            print(f"[来自{address}的消息：\n")
+            print(f"[来自{client_address}的消息：\n")
             msg = client_socket.recv(2048)
             if msg:
                 print(msg.decode("utf-8"))
