@@ -1,20 +1,18 @@
-from socket import socket, SOL_SOCKET, SO_REUSEADDR
+import socket
 
 
 class WebServer(object):
     def __init__(self):
-        with socket() as tcp_socket:
-            # 保存变量
-            self.tcp_socket = tcp_socket
+        with socket.socket() as tcp_socket:
             # 防止端口占用
-            tcp_socket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+            tcp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
             # 绑定端口
             tcp_socket.bind(('', 8080))
             # 监听
             tcp_socket.listen()
             # 等待客户端连接
             while True:
-                self.client_socket, self.client_addr = self.tcp_socket.accept()
+                self.client_socket, self.client_addr = tcp_socket.accept()
                 self.handle()
 
     def handle(self):
