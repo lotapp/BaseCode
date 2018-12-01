@@ -10,7 +10,7 @@
 
 <body>
     <script>
-        // 变量赋值
+        // 1.变量赋值
         // if (1 < 2) {
         //     var a = 1;
         // }
@@ -29,8 +29,92 @@
         // [a, b, c] = [1, 2, 3];
         // // 未捕获的SyntaxError：在解构声明中缺少初始化程序
         // console.log(a, b, c);
+        // -----------------------------------------------
+        // -----------------------------------------------
+        // 2.函数
+        // 2.1.箭头函数
+        // function add(x, y) {
+        //     return x + y;
+        // }
 
+        // let add1 = function (x, y) {
+        //     return x + y;
+        // }
+
+        // let add2 = (x, y) => {
+        //     return x + y;
+        // }
+        // let add3 = (x, y) => x + y;
+        // console.log(add(1, 2)) // 3
+        // console.log(add1(1, 2)) // 3
+        // console.log(add2(1, 2)) // 3
+        // console.log(add3(1, 2)) // 3
+        // window.onload=()=>{
+        //     alert("么么哒")
+        // }
+        // 便捷说明（`和Net用起来基本上一样`）
+        // 如果只有一个参数：`()`可以省略
+        // let get_age = age => {
+        //     return age - 2;
+        // }
+        // console.log(get_age(18))
+        // 如果函数体只有一句话：`{}`可以省略
+        // 如果只有一句return，那么return也可以省略
+        // let get_age = age => age - 2;
+        // console.log(get_age(18))
+        // let print_age = age => console.log(age - 2);
+        // print_age(18); //16
+        // -----------------------------------------------
+        // 2.2.默认参数
+        // 原来：
+        // function show(a, b, c) {
+        //     c = c || 7; // 默认参数
+        //     console.log(a, b, c)
+        // }
+        // 现在：
+        // function show(a, b, c = 7) {
+        //     console.log(a, b, c)
+        // }
+        // show(1, 2)
+        // show(1, 2, 3)
+        // -----------------------------------------------
+        // 2.3.参数展开（剩余参数|数组参数）
+        // let show_args = (a, b, ...args) => console.log(a, b, args);
+        // // `...args`是个数组（Python是元组）
+        // show_args(1, 2, 3, 4, 5, 6)// 1 2 [3, 4, 5, 6] 
+        // let show_args = (a, b, ...args, c) => console.log(a, b, args, c);
+        // // Uncaught SyntaxError: Rest parameter must be last formal parameter
+        // show_args(1, 2, 4, 5, 6, c = 3) // ...args必须是最后一个参数
+        // -----------------------------------------------
+        // 扩展用法：
+        // let nums = [1, 2, 3, 4]
+        // let nums2 = [0, ...nums, 5, 6]
+        // console.log(nums2) // [0,1,2,3,4,5,6]
+        // -----------------------------------------------
+        // let nums = [1, 2, 3, 4]
+        // let nums2 = [0, 5, 6]
+        // nums.push(...nums2)
+        // // [1, 2, 3, 4, 0, 5, 6]
+        // console.log(nums)
+        // -----------------------------------------------
+        // -----------------------------------------------
+        // 数组
+        // scor_arr = [100, 28, 38, 64]
+        // // let results = scor_arr.map(function (item) {
+        // //     return item >= 60;
+        // // });
+        // // 简写：
+        // let results = scor_arr.map(item => item >= 60);
+        // // [true, false, false, true]
+        // console.log(results); // 不改变scor_arr内容，生成新数组
+        // console.log(scor_arr);
+        // -----------------------------------------------
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // nums2 = nums.filter(item => item % 2 == 0);
+        // // [2, 4, 6, 8, 10]
+        // console.log(nums2)
+        // -----------------------------------------------
+        // -----------------------------------------------
     </script>
 </body>
-
 </html>
