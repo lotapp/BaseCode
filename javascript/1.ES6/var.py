@@ -2,6 +2,12 @@
 #     b = 1
 # print(b)
 # ---------------------------------
+# age = 20
+# def test():
+#     global age
+#     print(age)
+# test()
+# ---------------------------------
 # ---------------------------------
 # def show(a, b, *args, c):
 #     print(a, b, args, c)
@@ -38,3 +44,38 @@
 # nums2 = filter(lambda item: item % 2 == 0, nums)
 # # [2, 4, 6, 8, 10]
 # print(list(nums2)) # nums2：PY2返回的是列表
+# ---------------------------------
+# import functools
+# nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# result = functools.reduce(lambda x, y: print(x, y), nums)
+# print(result)
+# # 1 2
+# # None 3
+# # None 4
+# # None 5
+# # None 6
+# # None 7
+# # None 8
+# # None 9
+# # None 10
+# # None
+# ---------------------------------
+# import functools
+# nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# result = functools.reduce(lambda x, y: x + y, nums)
+# print(result / len(nums))  # 5.5
+# ---------------------------------
+# import functools
+# nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# result = functools.reduce(avg, nums)
+# print(result)
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------
+# ---------------------------------

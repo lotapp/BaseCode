@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>变量</title>
+    <title>变量、函数、数组方法</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
@@ -114,7 +114,72 @@
         // // [2, 4, 6, 8, 10]
         // console.log(nums2)
         // -----------------------------------------------
+        // forEach
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // nums.forEach(item => {
+        //     item += 1;
+        // });
+
+        // // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        // console.log(nums); //不会改变nums，仅仅是遍历
+        // -----------------------------------------------
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // let sum = 0;
+        // let temp =nums.forEach(item => {
+        //     sum += item;
+        // });
+        // console.log(sum) // 55
+        // console.log(temp) // 验证了：forEach 没有返回值
+        // -----------------------------------------------
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // // x是第一个元素，y是第二个元素
+        // nums.reduce((x, y, index) => {
+        //     console.log(x, y, index);
+        // });
+        // 1 2 1
+        // undefined 3 2
+        // undefined 4 3
+        // undefined 5 4
+        // undefined 6 5
+        // undefined 7 6
+        // undefined 8 7
+        // undefined 9 8
+        // undefined 10 9
+        // -----------------------------------------------
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // result = nums.reduce((x, y) => x + y);
+        // console.log(result / nums.length) // 5.5
+        // -----------------------------------------------
+        // nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // let result = nums.reduce((temp, item, index) => {
+        //     temp += item;
+        //     if (index < nums.length - 1) {
+        //         return temp;
+        //     } else { // 最后一次，返回平均值即可
+        //         return temp / nums.length;
+        //     }
+        // });
+        // console.log(result) // 5.5
+        // -----------------------------------------------
+        window.onload = () => {
+            let collection = document.getElementsByTagName("div");
+            Array.from(collection).forEach(item => item.style.background = "blue");
+        }
+        // -----------------------------------------------
+        // -----------------------------------------------
         // -----------------------------------------------
     </script>
+    <style type="text/css">
+        div {
+            width: 200px;
+            height: 200px;
+            margin-right: 1px;
+            float: left;
+        }
+    </style>
+    <div></div>
+    <div></div>
+    <div></div>
 </body>
+
 </html>
