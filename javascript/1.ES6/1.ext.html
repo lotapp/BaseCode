@@ -9,8 +9,72 @@
 </head>
 
 <body>
-    <!-- promise异步操作用起来像同步化（实际还是异步，只是方便编程） -->
-    <!-- generator -->
+    <script>
+        // Promise：用同步的方式去写异步
+        // let p = new prompt((resolve, reject) => {
+        //     // resolve：解决（成功）
+        //     // reject：拒绝（失败）
+        // });
+        // 局限性：带逻辑的异步操作比较麻烦
+        // Promise.all(); 所有的都成功
+        // Promise.race(); 有一个成功即可
+        // -----------------------------------------------
+        // -----------------------------------------------
+        // Generator：生成器
+        // function* show1() {
+        //     console.log("a");
+        //     yield "1";
+        //     console.log("b");
+        //     yield "2";
+        //     console.log("c");
+        //     return "d";
+        // }
+        // let gen = show1();
+        // // 每一次next都执行到下一个yield停止
+        // console.log(gen.next());
+        // // 返回值.value 可以得到yield返回的值
+        // console.log(gen.next().value);
+        // // done==true的时候代表迭代结束
+        // console.log(gen.next());
+        // -----------------------------------------------
+        // 遍历
+        // while (true) {
+        //     result = gen.next();
+        //     if (result.done) {
+        //         break;
+        //     } else {
+        //         console.log(result.value);
+        //     }
+        // }
+        // for (const item of show1()) {
+        //     console.log(item);
+        // }
+        // -----------------------------------------------
+        // function* show2() {
+        //     a = yield "111";
+        //     console.log(a);
+        //     b = yield a;
+        //     console.log(b);
+        //     yield b;
+        // }
+
+        // let gen = show2();
+        // // 合Python一样，第一个不传参
+        // console.log(gen.next());
+        // console.log(gen.next("aaa"));
+        // console.log(gen.next("bbb"));
+        // console.log(gen.next("cc"));
+
+        // -----------------------------------------------
+        let test = async () => {
+            await "abc";
+        }
+        // console.log(test().then());
+        // -----------------------------------------------
+        // -----------------------------------------------
+
+    </script>
+
     <!-- ES7 async、await -->
     <!-- 模块：编译打包 babel==>ES6==>ES5 -->
 </body>
