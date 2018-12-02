@@ -81,9 +81,65 @@
 # 23
 # """)
 # ---------------------------------
+# url = "https://www.baidu.com"
+# if url.startswith("https://") or url.startswith("http://"):
+#     print("B/S")
+# if url.endswith(".com"):
+#     print(".com")
 # ---------------------------------
 # ---------------------------------
+# OOP
+# class People(object):
+#     def __init__(self, name, age):
+#         self.name = name
+#         self.age = age
+
+#     def show(self):
+#         print(f"我叫：{self.name}，今年：{self.age}")
+
+#     @classmethod
+#     def hello(cls):
+#         print("Hello World!")
+
+# xiaoming = People("小明", 23)
+# xiaoming.show()  # 我叫：小明，今年：23
+# # 这个虽然可以访问到，但我一直都不建议这么用（不然用其他语言会混乱崩溃的）
+# xiaoming.hello()  # Hello World!
+# People.hello()  # Hello World!
 # ---------------------------------
+# class Teacher(People):
+#     def __init__(self, name, age, work):
+#         self.work = work
+#         super().__init__(name, age)
+
+#     def show_job(self):
+#         print(f"我是做{self.work}工作的")
+
+
+# xiaozhang = Teacher("小张", 25, "思想教育")
+# xiaozhang.show()  # 我叫：小张，今年：25
+# xiaozhang.show_job()  # 我是做思想教育工作的
+# Teacher.hello()  # Hello World!
+# ---------------------------------
+# class Animal(object):
+#     def __init__(self, name):
+#         self.name = name
+
+#     def run(self):
+#         print(f"{self.name}会跑")
+
+# class Dog(Animal):
+#     def run(self):
+#         print(f"{self.name}会飞快的跑着")
+
+# # 借助一个方法来实现多态
+# def run(obj):
+#     obj.run()
+
+# run(Animal("动物"))  # 动物会跑
+# run(Dog("小狗"))  # 小狗会飞快的跑着
+# ---------------------------------
+
 # ---------------------------------
 # ---------------------------------
 # ---------------------------------

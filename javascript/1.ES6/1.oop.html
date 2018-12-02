@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>面向对象</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        // class People {
+        //     // 构造函数
+        //     constructor(name, age) {
+        //         this.name = name;
+        //         this.age = age;
+        //     }
+        //     show() {
+        //         console.log(`我叫：${this.name}，今年${this.age}`);
+        //     }
+        //     // 静态方法
+        //     static hello() {
+        //         console.log("Hello World!");
+        //     }
+        // }
+        // let xiaoming = new People("小明", 23);
+        // xiaoming.show(); //我叫：小明，今年23
+        // // xiaoming.hello(); 这个不能访问
+        // People.hello(); //Hello World!
+        // -----------------------------------------------
+        // class Teacher extends People {
+        //     constructor(name, age, work) {
+        //         super(name, age); // 放上面
+        //         this.work = work;
+        //     }
+        //     show_job() {
+        //         console.log(`我是做${this.work}工作的`);
+        //     }
+        // }
+        // let xiaozhang = new Teacher("小张", 25, "思想教育");
+        // xiaozhang.show(); // 我叫：小张，今年25
+        // xiaozhang.show_job(); // 我是做思想教育工作的
+        // Teacher.hello(); // Hello World!
+        // -----------------------------------------------
+        // class Animal {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+        //     run() {
+        //         console.log(`${this.name}会跑`);
+        //     }
+        // }
+        // class Dog extends Animal {
+        //     run() {
+        //         console.log(`${this.name}会飞快的跑着`);
+        //     }
+        // }
+        // // 借助一个方法来实现多态
+        // let run = obj => {
+        //     obj.run()
+        // }
+        // run(new Animal("动物")); // 动物会跑
+        // run(new Dog("小狗")); // 小狗会飞快的跑着
+        // -----------------------------------------------
+        // class People {
+        //     constructor(name, age) {
+        //         this.name = name;
+        //         this.age = age;
+        //     }
+        //     show() {
+        //         console.log(this);
+        //         console.log(`我叫：${this.name}，今年${this.age}`);
+        //     }
+        // }
+        // let p = new People("小明", 23);
+        // // 安装道理应该可以，但是因为this变了，所以不行
+        // // document.onclick = p.show; // 我叫：undefined，今年undefined
+        // // 原来写法：
+        // // document.onclick = () => p.show(); // 我叫：小明，今年23
+        // // 简写：bind
+        // document.onclick = p.show.bind(p); // 我叫：小明，今年23
+        // -----------------------------------------------
+        // function show() {
+        //     console.log(this);
+        // }
+        // document.onclick = show; // document
+        // document.onclick = show.bind("mmd"); // String {"mmd"}
+        // -----------------------------------------------
+            // document.onclick = function () {
+            //     let arr = [1, 2, 3, 4];
+            //     arr.show = () => {
+            //         console.log(this); // document
+            //     }
+            //     arr.show.bind("mmd"); // 箭头函数的优先级比bind高
+            //     arr.show();
+            // }
+        // -----------------------------------------------
+        // -----------------------------------------------
+    </script>
+</body>
+
+</html>
