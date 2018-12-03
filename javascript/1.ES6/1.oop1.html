@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>React组件化</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/react/16.6.3/react.production.min.js"></script>
+    <script src="./js/react-dom/16.6.3/react-dom.production.min.js"></script>
+    <script src="./js/babel-core/5.8.38/browser.min.js"></script>
+    <!-- 注意下类型是"text/babel" -->
+    <script type="text/babel">
+    window.onload=function () {
+        let item = document.getElementById("test");
+        ReactDOM.render(
+            <strong>公众号：逸鹏说道</strong>,
+            item
+        );
+    };
+    </script>
+</head>
+
+<body>
+    <div id="test"></div>
+    <!-- npm install -g cnpm --registry=https://registry.npm.taobao.org -->
+    <!-- cnpm install react -->
+    <!-- cnpm install babel -->
+    <!-- cnpm i babel-browser -->
+    <!-- cnpm install babel-core@old -->
+    <!-- babel-core 5.x -->
+    <!-- PS：i是install的简写，-g是安装到全局环境中，不加就只是安装到当前目录 -->
+</body>
+
+</html>
