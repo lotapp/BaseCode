@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OOP组件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/react/16.6.3/react.production.min.js"></script>
+    <script src="./js/react-dom/16.6.3/react-dom.production.min.js"></script>
+    <script src="./js/babel-core/5.8.38/browser.min.js"></script>
+    <script type="text/babel">
+        class Item extends React.Component{
+            // constructor(...args){
+            //     super(...args);
+            // }
+            // 必须定义的方法
+            render(){
+                console.log(this);
+                return <li><strong>{this.props.str}</strong></li>;
+            }
+        }
+        class MyList extends React.Component{
+            // constructor(...args){
+            //     super(...args);
+            // }
+            render(){
+                console.log(this);
+                return <ul>
+                {this.props.names.map(x=> <Item str={x}></Item>)}
+                </ul>
+            }
+        }
+        window.onload=()=>{
+            let test = document.getElementById("test");
+            ReactDOM.render(
+                // 这边的值可以从后台获取
+                <MyList names={["Golang","Python","NetCore","JavaScript"]}></MyList>,
+                test
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+
+</html>

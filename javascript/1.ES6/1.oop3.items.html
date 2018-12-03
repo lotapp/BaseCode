@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OOP组件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./js/react/16.6.3/react.production.min.js"></script>
+    <script src="./js/react-dom/16.6.3/react-dom.production.min.js"></script>
+    <script src="./js/babel-core/5.8.38/browser.min.js"></script>
+    <script type="text/babel">
+        class Item extends React.Component{
+            render(){
+                console.log(this);
+                return <strong>{this.props.str}</strong>;
+            }
+        }
+        window.onload=()=>{
+            ReactDOM.render(
+                <Item str="我叫小明"></Item>,document.getElementById("test")
+            );
+        }
+    </script>
+</head>
+
+<body>
+    <div id="test"></div>
+</body>
+
+</html>
