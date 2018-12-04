@@ -115,7 +115,6 @@
 #     def show_job(self):
 #         print(f"我是做{self.work}工作的")
 
-
 # xiaozhang = Teacher("小张", 25, "思想教育")
 # xiaozhang.show()  # 我叫：小张，今年：25
 # xiaozhang.show_job()  # 我是做思想教育工作的
@@ -139,8 +138,66 @@
 # run(Animal("动物"))  # 动物会跑
 # run(Dog("小狗"))  # 小狗会飞快的跑着
 # ---------------------------------
+# def show():
+#     yield "1"
+#     yield "2"
+#     return "d"
 
+# gen = show()
+
+# while True:
+#     try:
+#         print(next(gen))
+#     except StopIteration as ex:
+#         print(f"返回值：{ex.value}")
+#         break
+
+# for item in show():
+#     print(item)  # 1 2
 # ---------------------------------
+# def show():
+#     a = yield "111"
+#     print(a)
+#     b = yield a
+#     print(b)
+#     c = yield b
+#     print(c)
+#     return "over"
+
+# gen = show()
+# # 第一个不传参
+# print(next(gen))  # gen.send(None)
+# print(gen.send("aaa"))
+# print(gen.send("bbb"))
+# try:
+#     print(gen.send("ccc"))
+# except StopIteration as ex:
+#     print(ex.value)
 # ---------------------------------
+import asyncio
+
+
+# 模拟一个异步操作
+async def show():
+    await asyncio.sleep(1)
+    return "写完文章早点睡觉哈~"
+
+
+# 定义一个异步方法
+async def test(msg):
+    print(msg)
+    return await show()
+
+
+# Python >= 3.7
+# result = asyncio.run(test("这是一个测试"))
+# print(result)
+
+# Python >= 3.4
+loop = asyncio.get_event_loop()
+result = loop.run_until_complete(test("这是一个测试"))
+print(result)
+loop.close()
+
 # ---------------------------------
 # ---------------------------------

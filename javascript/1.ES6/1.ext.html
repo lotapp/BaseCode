@@ -6,10 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>promise、生成器、模块</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
     <script>
+        // console.log("--------------------")
+        // $.ajax({
+        //     url: "./data/user.json",
+        //     dataType: "json",
+        //     success(data) {
+        //         console.log(data);
+        //     }, error(ex) {
+        //         console.log("请求失败");
+        //     }
+        // });
+        // console.log("--------------------")
+        // -------------------------------------
+        // let p1 = $.ajax({
+        //     url: "./data/user.json",
+        //     dataType: "json"
+        // });
+        // // 不存在的文件
+        // let p2 = $.ajax({
+        //     url: "./data/mmd.json",
+        //     dataType: "json"
+        // });
+        // p1.then(data => console.log(data), ex => console.log("请求失败"));
+        // p2.then(data => console.log(data), ex => console.log("请求失败"));
+        // -------------------------------------
         // Promise：用同步的方式去写异步
         // let p = new prompt((resolve, reject) => {
         //     // resolve：解决（成功）
@@ -18,6 +43,31 @@
         // 局限性：带逻辑的异步操作比较麻烦
         // Promise.all(); 所有的都成功
         // Promise.race(); 有一个成功即可
+        // let p1 = new Promise((resolve, reject) => {
+        //     $.ajax({
+        //         url: "./data/user.json",
+        //         dataType: "json",
+        //         success(data) {
+        //             resolve(data);
+        //         },
+        //         error(ex) {
+        //             reject(ex);
+        //         }
+        //     });
+        // });
+        // p1.then(data => console.log(data), ex => console.log("请求失败"));
+        // -----------------------------------------------
+        // let p1 = $.ajax({ url: "./data/user.json", dataType: "json" });
+        // let p2 = $.ajax({ url: "./data/list.txt", dataType: "json" });
+        // let p3 = $.ajax({ url: "./data/package.json", dataType: "json" });
+
+        // // 进行一系列处理（有一个失败都会直接进入错误处理）
+        // Promise.all([p1, p2, p3]).then(arr => {
+        //     // 这时候返回的是一个数组
+        //     console.log(arr);
+        // }, ex => {
+        //     console.error(ex);
+        // });
         // -----------------------------------------------
         // -----------------------------------------------
         // Generator：生成器
@@ -38,15 +88,23 @@
         // console.log(gen.next());
         // -----------------------------------------------
         // 遍历
+        // function* show() {
+        //     yield "1";
+        //     yield "2";
+        //     return "d";
+        // }
+        // let gen = show();
         // while (true) {
-        //     result = gen.next();
+        //     let result = gen.next();
         //     if (result.done) {
+        //         console.log(`返回值：${result.value}`);
         //         break;
         //     } else {
         //         console.log(result.value);
         //     }
         // }
-        // for (const item of show1()) {
+        // -----------------------------------------------
+        // for (let item of show()) {
         //     console.log(item);
         // }
         // -----------------------------------------------
@@ -55,28 +113,46 @@
         //     console.log(a);
         //     b = yield a;
         //     console.log(b);
-        //     yield b;
+        //     c = yield b;
+        //     console.log(c);
+        //     return "over";
         // }
-
         // let gen = show2();
-        // // 合Python一样，第一个不传参
+        // // 和Python一样，第一个不传参
         // console.log(gen.next());
         // console.log(gen.next("aaa"));
         // console.log(gen.next("bbb"));
         // console.log(gen.next("cc"));
-
-        // -----------------------------------------------
-        let test = async () => {
-            await "abc";
-        }
-        // console.log(test().then());
         // -----------------------------------------------
         // -----------------------------------------------
-
+        // async function show(url) {
+        //     let data = await $.ajax({ url: url, dataType: 'json' });
+        //     console.log(data)
+        // }
+        // show("./data/list.txt")
+        // -----------------------------------------------
+        // let show = async (urls) => {
+        //     for (const url of urls) {
+        //         let data = await $.ajax({ url: url, dataType: "json" });
+        //         console.log(data);
+        //     }
+        // }
+        // show(["./data/user.json", "./data/list.txt", "./data/package.json"]);
+        // -----------------------------------------------
+        // (async () => {
+        //     let data = await $.ajax({ url: "./data/list.txt", dataType: 'json' });
+        //     console.log(data);
+        // })();
+        // -----------------------------------------------
+        // -----------------------------------------------
     </script>
-
-    <!-- ES7 async、await -->
-    <!-- 模块：编译打包 babel==>ES6==>ES5 -->
+    <script src="./js/test.js"></script>
+    <script>
+        (async () => {
+            let data = await test();
+            console.log(data);
+        })();
+    </script>
 </body>
 
 </html>
