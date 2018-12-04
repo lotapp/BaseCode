@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Json基础</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        // Json的标准写法：
+        // 1. 只能用双引号
+        // 2. 所有名字必须用引号包裹
+        let str1 = '{ a: 12, b: 5 }'; // 错误
+        let str2 = '{ "a": 12, "b": 5 }';// 正确
+        let str3 = "{ 'a': 'abc', 'b': 5 }";// 错误（单引号）
+        let str4 = '{ "a": "abc", "b": 5 }';// 正确（双引号）
+        // 测试是否为字符串
+        [str1, str2, str3, str4].forEach(str => {
+            try {
+                let json = JSON.parse(str);// 转换成字符串
+                console.log(json);
+            } catch (ex) {
+                console.log(`字符串：${str}转换发生异常：${ex}`);
+            }
+        });
+
+        let json1 = { name: "小明", age: 23, test: "我X!@#$%^&*(-_-)=+" };
+        let new_str = JSON.stringify(json1);
+        console.log(new_str);
+
+        // encodeURI对有些特殊符号并不会编码替换
+        let urlstr = `https://www.baidu.com/s?wd=${new_str}`;
+        console.log(encodeURI(urlstr));
+        let encode_url = encodeURIComponent(urlstr);
+        console.log(encode_url);
+        console.log(decodeURIComponent(encode_url));
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
