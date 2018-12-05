@@ -174,30 +174,58 @@
 # except StopIteration as ex:
 #     print(ex.value)
 # ---------------------------------
-import asyncio
+# import asyncio
 
+# # 模拟一个异步操作
+# async def show():
+#     await asyncio.sleep(1)
+#     return "写完文章早点睡觉哈~"
 
-# 模拟一个异步操作
-async def show():
-    await asyncio.sleep(1)
-    return "写完文章早点睡觉哈~"
+# # 定义一个异步方法
+# async def test(msg):
+#     print(msg)
+#     return await show()
 
-
-# 定义一个异步方法
-async def test(msg):
-    print(msg)
-    return await show()
-
-
-# Python >= 3.7
+# # Python >= 3.7
 # result = asyncio.run(test("这是一个测试"))
 # print(result)
 
-# Python >= 3.4
-loop = asyncio.get_event_loop()
-result = loop.run_until_complete(test("这是一个测试"))
-print(result)
-loop.close()
-
+# # Python >= 3.4
+# # loop = asyncio.get_event_loop()
+# # result = loop.run_until_complete(test("这是一个测试"))
+# # print(result)
+# # loop.close()
 # ---------------------------------
+# ---------------------------------
+# user = {"name": "dnt", "age": 25, "wechat": "dotnetcrazy"}
+
+# for key in user.keys():
+#     print(key)  # name age wechat
+
+# for value in user.values():
+#     print(value)  # dnt 25 dotnetcrazy
+
+# for key, value in user.items():
+#     print(key, value)  # name dnt  age 25  wechat dotnetcrazy
+# ---------------------------------
+# ---------------------------------
+# 格式系列：lstrip（去除左边空格）,rstrip（去除右边空格）,strip（去除两边空格）美化输出系列：ljust,rjust,center
+strip_str = " I Have a Dream "
+print("["+strip_str.strip()+"]")
+print("["+strip_str.lstrip()+"]")
+print("["+strip_str.rstrip()+"]")
+
+test_str = "ABCDabcdefacddbdf"
+print("["+test_str.ljust(50)+"]")
+print("["+test_str.rjust(50)+"]")
+print("["+test_str.center(50)+"]")
+
+# 输出：
+# [I Have a Dream]
+# [I Have a Dream ]
+# [ I Have a Dream]
+# [ABCDabcdefacddbdf                                 ]
+# [                                 ABCDabcdefacddbdf]
+# [                ABCDabcdefacddbdf                 ]
+
 # ---------------------------------

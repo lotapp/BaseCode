@@ -6,9 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ES7语法</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script>
-    // 数组 includes
+        // // 数组 includes：是否包含某个元素
+        // let arr = [1, 2, 3, 4, 5, 6, 7];
+        // console.log(arr.includes(3)); // true
+        // console.log(arr.includes("3")); // false
+        // // ---------------------------------------
+        // let arr = [1, 2, 3, 4, 5, 6, 7];
+        // // 循环的是key（数组对应的是index）
+        // for (let i in arr) {
+        //     console.log(i); // 0 1 2 3 4 5 6
+        // }
+        // // 数组循环的是value
+        // for (let i of arr) {
+        //     console.log(i); // 1 2 3 4 5 6 7
+        // }
+        // // ---------------------------------------
+        // let json = { name: "dnt", age: "25", wechat: "dotnetcrazy" };
+
+        // // for in 还是遍历的是key
+        // for (let i in json) {
+        //     console.log(i); // name age wechat
+        // }
+
+        // // 获取值
+        // for (let i in json) {
+        //     console.log(json[i]); // dnt 25 dotnetcrazy
+        // }
+
+        // // json对象是一个不可迭代的对象（for of只能遍历可迭代对象）
+        // for (let i of json) {
+        //     console.log(i); // json is not iterable
+        // }
+        // ---------------------------------------
+        // let nums = [1, 2, 3, 4, 5, 6, 7];
+        // console.log(nums)
+        // for (let key of nums.keys()) {
+        //     console.log(key);
+        // }
+        // for (let value of nums.values()) {
+        //     console.log(value);
+        // }
+        // for (let [key, value] of nums.entries()) {
+        //     console.log(key, value)
+        // }
+        // ---------------------------------------
+        // ---------------------------------------
+        // let a = 3;
+        // console.log(a ** 2); // 3^2=9
+        // ---------------------------------------
+        // ---------------------------------------
+        let str = "1325";
+        // 10个坑位，指定用0填充（默认用空格填充）
+        let net_str = str.padStart(10, "0");
+        console.log(net_str); // 0000001325
+        // 默认用空格填充
+        net_str = str.padEnd(10); // [1325      ]
+        console.log('[' + net_str + ']');
+        // ---------------------------------------
+        // ---------------------------------------
+        // ---------------------------------------
 
     </script>
 </head>
