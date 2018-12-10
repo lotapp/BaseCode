@@ -16,7 +16,7 @@ class Task(object):
         self.server.bind(('', 8080))
         self.server.listen()
         # 把Server注册到epoll
-        Selector.register(self.server.fileno(), Selector._EVENT_READ,
+        Selector.register(self.server.fileno(), selectors.EVENT_READ,
                           self.connected)
 
     def connected(self, key):
