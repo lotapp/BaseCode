@@ -4,8 +4,8 @@ import socket
 
 def main():
     with socket.socket() as tcp_server:
-        tcp_server.bind(('', 8080))
         tcp_server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        tcp_server.bind(('', 8080))
         tcp_server.listen()
         socket_info_dict = dict()
         socket_list = [tcp_server]  # 监测列表
@@ -25,7 +25,9 @@ def main():
                     data = item.recv(2048)
                     if data:
                         print(data.decode("utf-8"))
-                        item.send(b"ok")
+                        item.send(
+                            b"HTTP/1.1 200 ok\r\nContent-Type: text/html;charset=utf-8\r\n\r\n<h1>Web Server Test</h1>"
+                        )
                     else:
                         item.close()
                         socket_list.remove(item)
