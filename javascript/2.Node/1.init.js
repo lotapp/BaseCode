@@ -1,4 +1,4 @@
-// import http from "http";
+// ES6语法：import http from "http"; （现在还没能完全支持）
 const http = require("http")
 
 let server = http.createServer((request, response) => {
