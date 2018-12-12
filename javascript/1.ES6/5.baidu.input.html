@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>百度候选词</title>
+    <script>
+        // https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=关键词&cb=回调函数
+        let show_ul = (json) => {
+            let ul_obj = document.getElementById("myul");
+            ul_obj.innerHTML = ""; // 清空现在的ul
+
+            console.log(json.s);
+
+            json.s.forEach(item => {
+                let li_obj = document.createElement("li");
+                li_obj.innerHTML = item;
+                ul_obj.appendChild(li_obj);
+            });
+        }
+        window.onload = () => {
+            let input_obj = document.getElementById("myinput");
+
+            input_obj.oninput = () => {
+                // 用script加载的方式，只会执行一次，不满足我们的需求，so ==> 动态创建
+                let script_obj = document.createElement("script");
+                script_obj.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=${encodeURIComponent(input_obj.value)}&cb=show_ul`
+                document.body.appendChild(script_obj); //添加到body里面
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="myinput" />
+    <ul id="myul"></ul>
+</body>
+
+</html>
