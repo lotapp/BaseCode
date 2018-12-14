@@ -1,6 +1,6 @@
 const path = require("path");
 
-let file_name = "/images/png/小明.png";
+let file_name = "./images/png/小明.png";
 
 
 // 文件路径 /images/png
@@ -22,4 +22,4 @@ console.log(path.resolve());
 // 文件的绝对路径
 console.log(path.resolve(file_name));
 
-// console.log(path);
+console.log(path);
