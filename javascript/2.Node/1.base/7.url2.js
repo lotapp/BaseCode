@@ -12,9 +12,12 @@ let server = http.createServer((request, response) => {
     // 读取对应文件
     fs.readFile(`www${pathname}`, (ex, data) => {
         if (ex) {
-            response.writeHeader(404);
-            response.write("访问的页面不存在～");
-            // response.status(404); // 
+            // 返回404状态码，并设置编码为UTF-8
+            response.writeHeader(404, {
+                "Content-Type": "text/html;charset=utf-8"
+            });
+            // 提示需要在 writeHeader 之后，不然访问的是浏览器404页面
+            response.write("<h1>访问的页面不存在～</h1>");
         } else {
             response.write(data);
         }
