@@ -42,6 +42,7 @@ fs.readFile("知识星球.png", (ex, data) => {
     if (ex) {
         console.log("读取错误：", ex);
     } else {
+        console.log(data); // 看看buffer是啥样的
         fs.writeFile("test.png", data, ex => {
             if (ex) {
                 console.log("复制错误：", ex);
