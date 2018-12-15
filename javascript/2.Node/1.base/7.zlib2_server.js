@@ -10,7 +10,6 @@ let server = http.createServer((request, response) => {
 
     // 响应之前告诉浏览器是gzip的格式
     response.setHeader("Content-Encoding", "gzip");
-
     // 返回gzip压缩后的文件
     rs.pipe(gz).pipe(response);
 
@@ -22,9 +21,11 @@ let server = http.createServer((request, response) => {
             "Content-Type": "text/html;charset=utf-8"
         });
         // 提示需要在 writeHeader 之后，不然访问的是浏览器404页面
-        response.write("<h1>访问的页面不存在～</h1>");
+        response.write("<h2>您访问的页面不存在～</h2>");
         response.end();
     });
 });
 
-server.listen(8080);
+server.listen(8080, () => {
+    console.log("服务器启动成功,端口：8080");
+});
