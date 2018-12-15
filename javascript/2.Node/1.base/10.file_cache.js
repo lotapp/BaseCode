@@ -37,7 +37,6 @@ http.createServer((request, response) => {
             // console.log(req.headers['If-Modified-Since']);
             // console.log(req.headers['if-modified-since']);
             let client_time = request.headers["if-modified-since"];
-
             // 说明之前访问过，现在是浏览器再次请求
             if (client_time) {
                 // 易错：比较毫秒（getTime）会有问题，转换成`秒`并取整（Math.floor:返回小于或等于其数值参数的最大整数）
