@@ -27,6 +27,19 @@ exchange_dict = defaultdict(Exchange)
 def get_exchange(key):
     return exchange_dict[key]
 
+# 交换机上的订阅者
+class PrintMessages:
+    def __init__(self):
+        self.count = 0
+
+    def send(self, msg):
+        self.count += 1
+        print(f"msg[{self.count}]: {msg}")
+
+
+exc = get_exchange('shop')
+exc.attach(PrintMessages())
+
 
 # 定义一个Task
 class BaseTask(object):
@@ -37,7 +50,7 @@ class BaseTask(object):
 # 比如获取一个key是shop的交换机
 exc = get_exchange("shop")
 
-# 然后把任务1和2添加到交换机内
+# 然后把任务1和2添加到交换机内（模拟其他PC的订阅者）
 task1 = BaseTask()
 task2 = BaseTask()
 exc.attach(task1)
