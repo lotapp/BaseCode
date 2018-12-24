@@ -75,5 +75,6 @@ class HttpServer(object):
 
 if __name__ == "__main__":
     import sys
+    # 临时添加模块所在路径
     sys.path.insert(1, "./www/bin")
     HttpServer().run()
