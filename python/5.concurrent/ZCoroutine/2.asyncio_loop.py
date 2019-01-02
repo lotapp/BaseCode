@@ -18,11 +18,12 @@ if __name__ == '__main__':
     import time
     start_time = time.time()
 
-    # >=python3.4
-    # 返回asyncio的事件循环
+    # # >=python3.4
+    # # 返回asyncio的事件循环
     # loop = asyncio.get_event_loop()
-    # 运行事件循环，直到指定的future运行完毕
+    # # 运行事件循环，直到指定的future运行完毕
     # result = loop.run_until_complete(test())
+    # print(result)
 
     # python3.7
     result = asyncio.run(test())

@@ -17,12 +17,11 @@ if __name__ == '__main__':
 
     # # >=python3.4
     loop = asyncio.get_event_loop()
-    # 2.0331544876098633
-    # tasks = [asyncio.ensure_future(test(i)) for i in range(10)]
     # 注意：是loop的方法，而不是asyncio的，不然就会引发RuntimeError：no running event loop
     tasks = [loop.create_task(test(i)) for i in range(10)]
-    loop.run_until_complete(asyncio.wait(tasks))
+    loop.run_until_complete(asyncio.gather(*tasks))
     for task in tasks:
         print(task.result()) # 上面把协程对象转换成task对象（协程和future相互转换的中间层）
-    # 2.0289666652679443
+    
+    # 2.016972780227661
     print(time.time() - start_time)
