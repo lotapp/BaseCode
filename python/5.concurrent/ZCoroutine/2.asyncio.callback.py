@@ -1,3 +1,4 @@
+# 低级API示例
 import asyncio
 
 
@@ -26,7 +27,7 @@ if __name__ == "__main__":
     for url in urls:
         # task = asyncio.ensure_future(get_html(url))
         task = loop.create_task(get_html(url))
-        # 设置回调函数
+        # 【核心代码】设置回调函数
         task.add_done_callback(call_back)
         # 添加到任务集合中
         tasks.add(task)

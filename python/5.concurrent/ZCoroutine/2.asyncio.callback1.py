@@ -4,7 +4,7 @@ import functools
 
 async def get_html(url):
     await asyncio.sleep(2)
-    return f"This is a test for"
+    return "This is a test for"
 
 
 # 注意一个东西：通过偏函数传过来的参数在最前面
