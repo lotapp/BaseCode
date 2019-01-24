@@ -2,6 +2,7 @@ import asyncio
 
 # 用来存放页面缓存
 cache_dict = {}
+lock = None  # asyncio.Lock()
 
 
 # 模拟一个获取html的过程
@@ -16,13 +17,14 @@ async def fetch(url):
 
 
 async def get_html(url):
-    # 如果缓存存在，则返回缓存的页面
-    for url in cache_dict:
-        return cache_dict[url]
-    # 否则获取页面源码并缓存
-    html = await fetch(url)
-    cache_dict[url] = html
-    return html
+    async with lock:
+        # 如果缓存存在，则返回缓存的页面
+        for url in cache_dict:
+            return cache_dict[url]
+        # 否则获取页面源码并缓存
+        html = await fetch(url)
+        cache_dict[url] = html
+        return html
 
 
 async def parse_js(url):
@@ -38,12 +40,12 @@ async def parse_html(url):
 
 
 async def main():
-    # 举个例子，baidu一开始没缓存，那解析js和解析html的任务提交的时候，dict里面是没有缓存的
-    # 而网络IO又是一个比较耗时的任务，这样就导致了请求了两次（更容易触发反爬虫机制）
-    url = "www.baidu.com"
+    global lock
+    lock = asyncio.Lock()  # 如果在开头就定义，那么lock的loop和方法的loop就会不一致了
+
     # 提交两个Task任务
-    task1 = asyncio.create_task(parse_js(url))
-    task2 = asyncio.create_task(parse_html(url))
+    task1 = asyncio.create_task(parse_js("www.baidu.com"))
+    task2 = asyncio.create_task(parse_html("www.baidu.com"))
     # 等待任务结束
     result_list = await asyncio.gather(task1, task2)
     print(result_list)
