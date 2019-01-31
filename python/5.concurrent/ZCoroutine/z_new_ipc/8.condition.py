@@ -1,12 +1,8 @@
 import asyncio
 
-con = None
-
 
 async def main():
-    global con
-    con = asyncio.Condition()
-    
+    pass
 
 
 if __name__ == "__main__":
