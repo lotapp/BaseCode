@@ -14,7 +14,7 @@ async def updates():
 async def get_html(url):
     # 摸拟网络请求
     await asyncio.sleep(2)
-    html_dict[url] = f"<h1>{url}</h1>"
+    html_dict[url] = f"<h1>{url}</h1>"  # 可以暂时写入临时文件中
 
     event.set()  # 标记完成，普通方法
     return f"{url} done"
@@ -31,7 +31,7 @@ async def main():
     ]
     # 批量更新操作
     tasks.append(asyncio.create_task(updates()))
-    
+
     result = await asyncio.gather(*tasks)
     print(result)
 
