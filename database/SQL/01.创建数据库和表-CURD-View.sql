@@ -56,6 +56,9 @@ create table if not exists dotnetcrazy.users
 --   collate utf8_general_ci, -- 排序规则
 ;
 
+# create table dotnetcrazy.userinfo as select * from worktemp.userinfo; # 表未创建
+# insert into dotnetcrazy.userinfo select * from worktemp.userinfo; # 表已存在
+
 -- 显示表结构 desc users
 desc dotnetcrazy.users;
 
