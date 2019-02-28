@@ -3,7 +3,7 @@ import pymysql
 
 def main():
     # 托管的时候enter方法直接返回了cursor对象
-    with pymysql.Connect(
+    with pymysql.connect(
             host="192.168.36.123",
             port=3306,
             user="dnt",
@@ -17,7 +17,7 @@ def main():
         # 遍历输出
         # 通过go-sniffer监控可以知道：与数据库之后发生一次交互
         for _ in range(n):
-            result = cursor.fetchone()
+            result = cursor.fetchone()  # 获取查询结果集的下一行
             print(result)
     print("over")
 

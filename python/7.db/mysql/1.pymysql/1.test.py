@@ -1,9 +1,10 @@
 import pymysql
 
 
+# https://www.python.org/dev/peps/pep-0249/
 def main():
     # 获取连接对象
-    conn = pymysql.Connect(
+    conn = pymysql.connect(
         host='192.168.36.123',
         port=3306,
         user='dnt',
