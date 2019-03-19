@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>多媒体标签</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <video src="http://www.w3school.com.cn/i/movie.mp4" controls autoplay loop>您的浏览器不支持video标签</video>
+    <audio src="http://www.w3school.com.cn/i/song.mp3" controls autoplay loop>您的浏览器不支持</audio>
+
+    <h2>兼容写法：</h2>
+    <video controls>
+        <source src="http://www.w3school.com.cn/i/movie.mp4">
+        <source src="http://www.w3school.com.cn/i/movie.ogg">
+        您的浏览器不支持video标签
+    </video>
+
+    <audio controls>
+        <source src="http://www.w3school.com.cn/i/song.mp3">
+        <source src="http://www.w3school.com.cn/i/song.ogg">
+        您的浏览器不支持audio标签
+    </audio>
+</body>
+
+</html>

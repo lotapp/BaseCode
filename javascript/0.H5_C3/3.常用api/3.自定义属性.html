@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>自定义属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="test" data-name="mmd" data-test-one="test">自定义属性</div>
+    <script>
+        // 获取标签的自定义属性值
+        let list = document.querySelector(".test").dataset;
+        // 获取：dom.dataset.自定义属性名（属性名不包含`data-`)
+        console.log(list.name);
+        // PS：test-one名字会改成驼峰命名的变量：testOne
+        console.log(list.testOne)
+        // 设置：dom.dataset.自定义属性名 = xxx or dataset[自定义属性名] = xxx
+        list.name = "小明"; // 标签中对应值会变成小明
+        list.age = 23; // 添加一个属性
+        // PS：设置为data-test-two
+        list.testTwo = "test2";
+    </script>
+</body>
+
+</html>

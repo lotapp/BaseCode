@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        nav {
+            height: 200px;
+            background-color: red;
+            /* ie创建自定义标签默认是行级元素，height不生效，所以需要设置block */
+            display: block;
+        }
+
+        div {
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+    <script>
+        // 创建自定义标签
+        document.createElement("nav")
+    </script>
+</head>
+
+<body>
+    <!-- 本质就是因为不能识别，那就创建自定义标签，ie默认创建的为行级标签，那就设置为块级元素 -->
+    <nav>语义标签的导航</nav>
+    <div>没有语义的导航</div>
+</body>
+
+</html>
