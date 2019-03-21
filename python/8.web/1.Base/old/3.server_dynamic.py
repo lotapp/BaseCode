@@ -18,8 +18,8 @@ class MyHandler(socketserver.BaseRequestHandler):
                     file_name = "/index.html"  # 代表主页
             # 是否是动态页面
             if file_name.endswith(".py"):
-                # 开头的/和后面的.py去除掉
-                self.response_body = self.__dynamic_handler(file_name[1:-3])
+                # .py去除掉
+                self.response_body = self.__dynamic_handler(file_name[:-3])
             else:  # 静态页面
                 self.response_body = self.__static_handler(file_name)
                 # 根据有没有内容来设置返回的状态码
@@ -46,7 +46,8 @@ class MyHandler(socketserver.BaseRequestHandler):
         self.response_headers = f"HTTP/1.1 {status}\r\n"
         for key, value in header_dict.items():
             self.response_headers += f"{key}:{value}\r\n"
-        self.response_headers += "\r\n"  # header和body分隔的地方是两个\r\n
+        # header和body分隔的地方是两个\r\n
+        self.response_headers += "Server:MyServer\r\n\r\n"
 
     # 没有变化
     def response(self):
@@ -75,15 +76,16 @@ class MyHandler(socketserver.BaseRequestHandler):
 
     def __dynamic_handler(self, name):
         """动态页面"""
-        m = __import__(name)
+        self.request_headers["path"] = name  # 把请求方法传递过去
+
+        from dynamic.frame import WebFrame
         # 根据WSGI协议来
-        m.application(self.request_headers, self.start_response)
+        return WebFrame().application(self.request_headers,
+                                      self.start_response)
 
 
+# 没有变化
 def main():
-    import sys
-    sys.path.append("./handler")  # 设置动态模块的路径
-
     with socketserver.ThreadingTCPServer(("", 8080), MyHandler) as server:
         server.allow_reuse_address = True  # 防止端口占用
         server.serve_forever()
