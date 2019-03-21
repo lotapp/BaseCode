@@ -43,9 +43,6 @@ class WebFrame(object):
     def get_info(self, id):
         return f"<h2>Info For {id}</h2>".encode("utf-8")
 
-    def match_url(self, ur):
-        pass
-
     # add：正则匹配
     def application(self, env, start_response):
         """约定的方法入口"""
