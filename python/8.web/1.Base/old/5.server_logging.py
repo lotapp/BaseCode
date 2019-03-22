@@ -21,7 +21,7 @@ class MyHandler(socketserver.BaseRequestHandler):
             ))
         logger.addHandler(fh)
 
-        # PS：不支持中文的一步到位
+        # PS：不支持中文的一步到位（1.引入一下logging模块，2.然后下面这段代码配置一下，3.之后`logging.级别(xx)`调用即可
         # logging.basicConfig(level=logging.INFO,filename=f"{time.strftime('%Y-%m-%d',time.localtime())}.log",filemode="a+",format="%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s: %(message)s")
 
     def handle(self):
