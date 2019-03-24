@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>小文件读取</title>
+</head>
+
+<body>
+    <input class="file" type="file" name="">
+    <script>
+        let file_btn = document.querySelector("input");
+        // 注意一下this的问题：<http://www.cnblogs.com/dotnetcrazy/p/10061671.html#3.4.特殊的this（重要）>
+        file_btn.onchange = function () {
+            // 获取文件
+            let file = this.files[0];
+            // type只能识别常用格式，`.md`就不能识别
+            console.log(file);
+            // 开始读取（创建读取器）
+            let reader = new FileReader(); // Python不写new
+            // 用读取文本的方式来读取
+            reader.readAsText(file); // 没有返回值
+            // 取代完成后执行
+            reader.onload = () => {
+                console.log(reader.result);
+            };
+        };
+    </script>
+</body>
+
+</html>

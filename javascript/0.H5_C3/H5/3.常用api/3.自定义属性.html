@@ -17,11 +17,13 @@
         console.log(list.name);
         // PS：test-one名字会改成驼峰命名的变量：testOne
         console.log(list.testOne)
-        // 设置：dom.dataset.自定义属性名 = xxx or dataset[自定义属性名] = xxx
+        // 设置：dom.dataset.自定义属性名 = xxx or dataset["自定义属性名"] = xxx
         list.name = "小明"; // 标签中对应值会变成小明
         list.age = 23; // 添加一个属性
         // PS：设置为data-test-two
         list.testTwo = "test2";
+        // PS：删除对应的自定义属性（和Python类似）
+        delete list.testOne; // 删掉data-test-one属性 or delete list["testOne"]
     </script>
 </body>
 
