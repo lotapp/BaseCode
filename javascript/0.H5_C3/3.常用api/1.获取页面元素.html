@@ -3,18 +3,35 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>选择器</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* eg：我想让Python变成红色 */
+        /* li span {
+            color: red;
+        } */
+    </style>
 </head>
 
 <body>
+    <ul>
+        <li>
+            <span>Python</span>
+        </li>
+        <li>
+            JavaScript
+        </li>
+    </ul>
+
     <script>
-        // 只能选中第一个元素（单个）
-        document.querySelector("选择器");
-        // 选中所有符合的元素（列表）
-        document.querySelectorAll("选择器");
         // PS：选择器可以是CSS中的任意一种
+        // 只能选中第一个元素（单个）
+        document.querySelector("li span").style.color = "red";
+        // 选中所有符合的元素（列表）
+        dom_list = document.querySelectorAll("li");
+        // 用法很像C#
+        dom_list.forEach(item => {
+            item.style.color = "red";
+        });
     </script>
 </body>
 
