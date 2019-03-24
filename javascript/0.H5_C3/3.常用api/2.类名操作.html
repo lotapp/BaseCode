@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>类名操作</title>
+    <style type="text/css">
+        .dis {
+            background-color: red;
+            width: 300px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo"></div>
+    <div>
+        <input type="button" value="添加类名" class="add mmd">
+        <input type="button" value="移除类名" class="remove">
+        <input type="button" value="切换类名" class="toggle">
+        <input type="button" value="是否包含类名" class="contains">
+    </div>
+    <script>
+        // 演示对象
+        let demo_obj = document.querySelector(".demo");
+
+        // 给几个按钮对象注册点击事件
+        // 添加
+        document.querySelector(".add").onclick = () => {
+            demo_obj.classList.add("dis");
+        };
+        // 移除
+        let remove_btn = document.querySelector(".remove").onclick = () => {
+            demo_obj.classList.remove("dis");
+        };
+        // 切换
+        let toggle_btn = document.querySelector(".toggle").onclick = () => {
+            demo_obj.classList.toggle("dis"); // 没则添加，有则移除
+        };
+        // 是否包含
+        let contains_btn = document.querySelector(".contains").onclick = () => {
+            let b = demo_obj.classList.contains("dis");
+            console.log(b);
+        };
+    </script>
+</body>
+
+</html>

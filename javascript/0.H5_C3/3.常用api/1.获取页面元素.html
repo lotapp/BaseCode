@@ -27,7 +27,7 @@
         // 只能选中第一个元素（单个）
         document.querySelector("li span").style.color = "red";
         // 选中所有符合的元素（列表）
-        dom_list = document.querySelectorAll("li");
+        let dom_list = document.querySelectorAll("li");
         // 用法很像C#
         dom_list.forEach(item => {
             item.style.color = "red";
