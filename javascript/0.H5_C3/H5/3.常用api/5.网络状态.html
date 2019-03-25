@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>网络状态</title>
+</head>
+
+<body>
+    <script>
+        // 获取网络状态
+        var state = window.navigator.onLine;
+        if (state) {
+            console.log("当前网络可用");
+        } else {
+            console.warn("断网提醒：当前网络不可用");
+        }
+        // 断网执行的事件
+        window.onoffline = () => {
+            document.write("网络已断开");
+            console.log(window.navigator.onLine)
+        }
+        // 联网执行的事件
+        window.ononline = () => {
+            document.write("网络已连接");
+            console.log(window.navigator.onLine)
+        };
+    </script>
+</body>
+
+</html>

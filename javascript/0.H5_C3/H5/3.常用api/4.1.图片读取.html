@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>图片读取-Base64</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div>
+        <p><input type="file" /></p>
+    </div>
+    <script>
+        let img_exts = [".png", ".gif", ".jpg", ".jpeg", ".bmp", ".svg", ".ico"];
+        // 获取input对象
+        let input_obj = document.querySelector("input");
+        // 文件上传
+        input_obj.onchange = function () {
+            // 获取文件信息
+            let file = input_obj.files[0];
+            // 获取文件后缀
+            let ext = file.name.substring(file.name.lastIndexOf('.'));
+            // 不是图片
+            if (img_exts.indexOf(ext) == -1) {
+                alert("请上传图片，这个文件格式不支持哦~");
+                return
+            }
+            // 实例化文件读取器
+            let reader = new FileReader();
+            // base64的方式读取文件
+            reader.readAsDataURL(file); // 没有返回值
+            // 读取完成后执行
+            reader.onload = () => {
+                // 创建一个img对象
+                let img_obj = document.createElement("img");
+                // 把读取结果设置为img的src
+                img_obj.src = reader.result;
+                // 创建的img对象插入到div中
+                document.querySelector("div").appendChild(img_obj);
+            }
+        }
+    </script>
+</body>
+
+</html>
