@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>获取地理位置</title>
+</head>
+
+<body>
+    <script>
+        console.log(window.navigator.userAgent);
+        let position = window.navigator.geolocation.getCurrentPosition();
+        console.dir(position);
+    </script>
+</body>
+
+</html>
