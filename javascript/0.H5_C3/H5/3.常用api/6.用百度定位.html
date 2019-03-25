@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="utf-8">
     <title>百度地图API自定义地图</title>
     <script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=b3g90mWBIE2VaSCcCuPCXjhj"></script>
 </head>
@@ -11,8 +12,12 @@
     <div id="baidumap" style="width:1000px;height:500px;"></div>
     <script src="../js/baidumap.js"></script>
     <script>
-        // 初始化百度地图
-        initMap("baidumap", 120.705655, 31.318733);
+        window.navigator.geolocation.getCurrentPosition(res => {
+            // 初始化百度地图
+            initMap("baidumap", res.coords.longitude, res.coords.latitude);
+        }, ex => {
+            console.warn("获取失败", ex);
+        });
     </script>
 </body>
 

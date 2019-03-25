@@ -9,8 +9,14 @@
 <body>
     <script>
         console.log(window.navigator.userAgent);
-        let position = window.navigator.geolocation.getCurrentPosition();
-        console.dir(position);
+
+        let position = window.navigator.geolocation.getCurrentPosition(res => {
+            // 获取成功执行
+            console.log("获取成功", res.coords);
+            console.log(res.coords.longitude, res.coords.latitude,"Location in Canada");
+        }, ex => {
+            console.log("获取失败", ex);
+        });
     </script>
 </body>
 

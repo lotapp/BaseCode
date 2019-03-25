@@ -18,9 +18,9 @@ function addClickHandler(target, window) {
     });
 }
 //向地图添加覆盖物
-function addMapOverlay(lng, lat) {
+function addMapOverlay(lng, lat, content) {
     var markers = [{
-        content: "地址：大明湖畔", // 一般写详细地址
+        content: content, // 一般写详细地址
         title: "",
         imageOffset: {
             width: -46,
@@ -84,10 +84,15 @@ function addMapControl() {
     });
     map.addControl(overviewControl);
 }
-//创建和初始化地图函数：
-function initMap(id_str, lng, lat) {
+//创建和初始化地图函数：id字符串，经度，纬度，详细信息
+function initMap(id_str, lng, lat, content) {
+    console.info(id_str, lng, lat, content);
+    if (content == undefined) {
+        content = "I am here"; //`lng:${lng},lat:${lat}`; // ES6语法（默认参数也是ES6语法）
+        console.info("没有详细描述");
+    }
     createMap(id_str, lng, lat); //创建地图
     setMapEvent(); //设置地图事件
     addMapControl(); //向地图添加控件
-    addMapOverlay(lng, lat); //向地图添加覆盖物
+    addMapOverlay(lng, lat, content); //向地图添加覆盖物
 }
