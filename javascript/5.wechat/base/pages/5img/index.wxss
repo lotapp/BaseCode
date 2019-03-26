@@ -1,5 +1,6 @@
 .container {
   height: 1500rpx;
+  /* height: 100vh; */
 }
 
 .bg {

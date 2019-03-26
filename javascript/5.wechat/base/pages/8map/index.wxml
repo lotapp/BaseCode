@@ -1,5 +1,6 @@
 <view>
   <button bindtap='get_location'>{{demo1}}</button>
   <button bindtap='open_location'>{{demo2}}</button>
-  <button bindtap='goto_demo'>{{demo}}</button>
+  <button bindtap='goto_demo' data-url='./info'>{{demo3}}</button>
+  <button bindtap='goto_demo' data-url='./map'>{{demo}}</button>
 </view>

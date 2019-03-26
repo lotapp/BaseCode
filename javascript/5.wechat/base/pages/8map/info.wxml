@@ -1,0 +1,5 @@
+<view>
+  <!-- show-location：显示当前定位点，markers：多个标识，bindmarkertap：标记点击事件 -->
+  <map longitude='{{lon}}' latitude='{{lat}}' markers='{{markers}}' show-location='true' bindmarkertap='makertap' style='width:100%;height:100vh'></map>
+  <!-- 满屏设置：width:100%;height:100vh -->
+</view>

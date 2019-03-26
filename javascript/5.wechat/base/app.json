@@ -12,7 +12,8 @@
     "pages/7goto/main",
     "pages/8map/map",
     "pages/8map/bmap",
-    "pages/8map/index"
+    "pages/8map/index",
+    "pages/8map/info"
   ],
   "permission": {
     "scope.userLocation": {

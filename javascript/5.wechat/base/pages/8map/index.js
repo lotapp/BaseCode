@@ -2,9 +2,10 @@ Page({
   data: {
     demo: '完整案例',
     demo1: '获取经纬',
-    demo2: '打开地图',
-    lon: 120.636146,
-    lat: 31.25893
+    demo2: '显示标记',
+    demo3: '地图案例',
+    lon: 120.674297,
+    lat: 31.324571
   },
   onLoad: function(options) {},
   // 需要使用this的时候，最外面方法老老实实写function()
@@ -45,14 +46,16 @@ Page({
     // 打开位置
     wx.openLocation({
       latitude: that.data.lat,
-      longitude: that.data.lon
+      longitude: that.data.lon,
+      // scale: 10, // 缩放级别（5~18）默认是18
+      address: '江苏省苏州市工业园区都市花园' // 这个信息可以通过地图api逆向解析
     });
   },
   // 页面跳转
   // 用不到this的时候，箭头函数任意用（ES6语法）
-  goto_demo: e => {
+  goto_demo: function(e) {
     wx.navigateTo({
-      url: './map',
+      url: e.currentTarget.dataset.url
     })
   }
 })
