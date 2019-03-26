@@ -1,3 +1,4 @@
-.container view {
+.container navigator {
   padding: 10rpx;
+  font-size: 42rpx;
 }

@@ -1,0 +1,5 @@
+.info {
+  font-size: 32rpx;
+  text-align: center;
+  padding-top: 600rpx;
+}

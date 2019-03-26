@@ -1,7 +1,11 @@
 <view class='container'>
-  <view>
-    <navigator url='{{url}}' hover-class='hover'>链接跳转</navigator>
-  </view>
-  <view hover-class='hover' bindtap='to_page' data-url='{{url}}'>方法跳转</view>
-  <view hover-class='hover' bindtap='goto_page' data-url='{{url2}}'>带参跳转</view>
+  <navigator url='../1data/update_info' hover-class='hover'>1.页面初始数据的使用</navigator>
+  <navigator url='../2show/index' hover-class='hover'>2.弹框提醒的两个案例</navigator>
+  <navigator url='../3data/get_data' hover-class='hover'>3.自定义属性值的案例</navigator>
+  <navigator url='../4title/index' hover-class='hover'>4.小程序标题设置案例</navigator>
+  <navigator url='../5img/img' hover-class='hover'>5.小程序图片填充案例</navigator>
+  <navigator url='../5img/index' hover-class='hover'>6.小程序背景满屏案例</navigator>
+  <navigator url='../6tel/index' hover-class='hover'>7.小程序拨打电话案例</navigator>
+  <navigator url='../7goto/index' hover-class='hover'>8.小程序页面跳转案例</navigator>
+  <navigator url='../8map/map' hover-class='hover'>9.小程序地图相关案例</navigator>
 </view>

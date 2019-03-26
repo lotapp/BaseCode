@@ -1,4 +1,0 @@
-<view class='container'>
-  <view>{{name}}</view>
-  <view>{{age}}</view>
-</view>

@@ -6,10 +6,12 @@
     "pages/3data/get_data",
     "pages/4title/index",
     "pages/5img/index",
-    "pages/6.tel/index",
+    "pages/6tel/index",
     "pages/5img/img",
-    "pages/7.goto/index",
-    "pages/index/main"
+    "pages/7goto/index",
+    "pages/7goto/main",
+    "pages/8map/map",
+    "pages/8map/bmap"
   ],
   "window": {
     "backgroundTextStyle": "light",

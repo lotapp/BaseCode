@@ -1,0 +1,6 @@
+<view>
+  <button bindtap='get_location'>{{demo1}}</button>
+  <button bindtap='open_location'>{{demo2}}</button>
+  <button bindtap='goto_page' data-url="./bmap">{{demo3}}</button>
+</view>
+<view class='info'>{{bottom_info}}</view>

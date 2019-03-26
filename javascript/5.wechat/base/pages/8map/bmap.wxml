@@ -1,0 +1,4 @@
+<view>
+  <!-- show-location：显示带有方向的当前定位点，scale：缩放级别，markers：多个标识，bindmarkertap：标记点击事件 -->
+  <map class="map" id="map" longitude="{{lon}}" latitude="{{lat}}" scale="14" show-location="true" markers="{{markers}}" bindmarkertap="makertap"></map>
+</view>
