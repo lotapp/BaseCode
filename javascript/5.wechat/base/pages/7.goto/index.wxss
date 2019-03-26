@@ -1,0 +1,3 @@
+.container view {
+  padding: 10rpx;
+}

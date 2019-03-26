@@ -1,0 +1,5 @@
+<view class='container'>
+  <view hover-class='hover'>
+    <text data-tel='{{tel}}' bindtap='call_tel'>{{info}}{{tel}}</text>
+  </view>
+</view>

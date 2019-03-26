@@ -1,0 +1,7 @@
+view {
+  padding: 10rpx;
+}
+
+.red {
+  color: red;
+}

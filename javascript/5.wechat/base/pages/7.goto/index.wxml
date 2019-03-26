@@ -1,0 +1,7 @@
+<view class='container'>
+  <view>
+    <navigator url='{{url}}' hover-class='hover'>链接跳转</navigator>
+  </view>
+  <view hover-class='hover' bindtap='to_page' data-url='{{url}}'>方法跳转</view>
+  <view hover-class='hover' bindtap='goto_page' data-url='{{url2}}'>带参跳转</view>
+</view>

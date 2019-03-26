@@ -1,0 +1,3 @@
+<view class='container'>
+  <view data-name='小张' data-age='22' bindtap='get_datas' hover-class='hover'>点我获取data值</view>
+</view>

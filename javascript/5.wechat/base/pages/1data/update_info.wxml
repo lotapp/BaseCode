@@ -1,0 +1,7 @@
+<view class='container'>
+  <view class='{{my_class}}'>{{name}}</view>
+  <view>{{age}}</view>
+  <view>{{work.name}}</view>
+  <view>{{work.location}}</view>
+  <button bindtap='update_info'>点我就修改</button>
+</view>

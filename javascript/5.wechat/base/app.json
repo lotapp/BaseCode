@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/1data/update_info",
+    "pages/2show/index",
+    "pages/3data/get_data",
+    "pages/4title/index",
+    "pages/5img/index",
+    "pages/6.tel/index",
+    "pages/5img/img",
+    "pages/7.goto/index",
+    "pages/index/main"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  }
+}

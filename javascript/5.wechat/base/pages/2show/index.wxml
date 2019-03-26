@@ -1,0 +1,2 @@
+<button bindtap='show_msg1'>点我弹两行</button>
+<button bindtap='show_msg2'>点我就成功</button>

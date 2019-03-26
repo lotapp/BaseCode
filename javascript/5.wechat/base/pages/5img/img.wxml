@@ -1,0 +1,4 @@
+<view class='container'>
+  <!-- 高度自适应 -->
+  <image class="bg" src="../../images/bg.jpg" mode="widthFix"></image>
+</view>
