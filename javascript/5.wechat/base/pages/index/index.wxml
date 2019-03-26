@@ -7,5 +7,5 @@
   <navigator url='../5img/index' hover-class='hover'>6.小程序背景满屏案例</navigator>
   <navigator url='../6tel/index' hover-class='hover'>7.小程序拨打电话案例</navigator>
   <navigator url='../7goto/index' hover-class='hover'>8.小程序页面跳转案例</navigator>
-  <navigator url='../8map/map' hover-class='hover'>9.小程序地图相关案例</navigator>
+  <navigator url='../8map/index' hover-class='hover'>9.小程序地图相关案例</navigator>
 </view>

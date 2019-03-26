@@ -23,7 +23,7 @@ Page({
     // 根据经纬度获得对应的地理描述信息
     BMap.regeocoding({
       iconPath: '../../images/marker_red.png',
-      iconTapPath: '../../images/marker_yellow.png',
+      iconTapPath: '../../images/marker_red.png',
       success: ret => {
         console.info(ret.wxMarkerData)
         // 自定义marker上的气泡callout
