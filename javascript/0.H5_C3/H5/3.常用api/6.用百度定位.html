@@ -12,12 +12,14 @@
     <div id="baidumap" style="width:1000px;height:500px;"></div>
     <script src="../js/baidumap.js"></script>
     <script>
-        window.navigator.geolocation.getCurrentPosition(res => {
-            // 初始化百度地图
-            initMap("baidumap", res.coords.longitude, res.coords.latitude);
-        }, ex => {
-            console.warn("获取失败", ex);
-        });
+        window.onload = () => {
+            window.navigator.geolocation.getCurrentPosition(res => {
+                // 初始化百度地图
+                initMap("baidumap", res.coords.longitude, res.coords.latitude);
+            }, ex => {
+                console.warn("获取失败", ex);
+            });
+        }
     </script>
 </body>
 

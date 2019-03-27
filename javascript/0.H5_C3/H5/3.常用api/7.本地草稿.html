@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>本地草稿</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div>
+        <div>文章内容</div>
+        <textarea id="article" rows="20" cols="50"></textarea>
+        <input type="button" value="发布文章" />
+    </div>
+    <script>
+        window.onload = () => {
+            // 获取文本框对象
+            let text_obj = document.querySelector("#article");
+
+            // 根据文章编号，把草稿内容读取出来（如果没有就为空字符串）
+            text_obj.value = localStorage["5547"] || '';
+
+            // 文本内容改变了就执行（输入事件）
+            text_obj.oninput = () => {
+                // 假设当前文章id是5547
+                localStorage["5547"] = text_obj.value;
+            }
+
+            let btn_obj = document.querySelector("input");
+            btn_obj.onclick = () => {
+                // Ajax请求（我这边省略）
+                alert("文章发布成功！");
+                // 清除对应文章的草稿
+                delete localStorage["5547"];
+            }
+        }
+    </script>
+</body>
+
+</html>

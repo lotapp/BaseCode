@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>本地存储</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        console.log("-------------设置值---------------------")
+        // 设置值：setItem(key,value)
+        localStorage.setItem("id", 11);
+        localStorage.setItem("name", "小明");
+
+        // 其他实现
+        localStorage.age = 23; // 这种方式也可以
+        localStorage["gender"] = 1; // 这种方式设置也可以
+
+        console.log("-------------获取值---------------------")
+
+        //获取值：getItem(key)
+        localStorage.getItem("id");
+
+        // 其他实现
+        console.log(localStorage.age); // 这种方式也可以
+        console.log(localStorage.mmd); // 如果key不存在=>`undefined`
+
+        console.log(localStorage["gender"]); // 这种方式也可以
+        console.log(localStorage["mmd"]); // 如果key不存在=>`undefined`
+
+        console.log("-------------删除值---------------------")
+
+        // 删除值
+        localStorage.removeItem("id");
+        // 其他实现
+        delete localStorage.age;
+        delete localStorage["gender"];
+
+        console.log("-------------遍历值---------------------")
+
+        // 官方推荐的遍历方式
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            let value = localStorage.getItem(key);
+            console.log(key, value);
+        }
+        // PS：for in 的方式会把方法也遍历出来，不是我们需要的key-value
+    </script>
+</body>
+
+</html>
