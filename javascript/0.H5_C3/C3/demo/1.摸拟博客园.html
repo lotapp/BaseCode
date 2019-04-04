@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>博客园摸拟案例</title>
+    <style>
+        #main {
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            background-color: rgb(255, 0, 255);
+        }
+
+        #mainContent {
+            float: left;
+            width: 85%;
+            min-height: 1000px;
+            overflow: hidden;
+            background-color: rgb(0, 255, 255);
+        }
+
+        #sideBar {
+            width: 15%;
+            min-height: 1000px;
+            float: right;
+            background-color: rgb(255, 255, 0);
+        }
+
+        /* 摸拟阅读模式 */
+        #main #mainContent:hover {
+            width: auto !important;
+            /* 防止内容太少，撑不开 */
+            min-width: 95%;
+        }
+
+        #mainContent:hover+#sideBar {
+            display: none;
+        }
+
+        /* 清除浮动 */
+        .clearfix:before,
+        .clearfix:after {
+            content: '';
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main" class="clearfix">
+        <div id="mainContent">mainContent</div>
+        <div id="sideBar">sideBar</div>
+    </div>
+</body>
+
+</html>
