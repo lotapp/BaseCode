@@ -53,13 +53,16 @@
       top: 0;
     }
 
+    header {
+      width: 100%;
+      background-color: white;
+    }
 
     .navbox {
       width: 50%;
       min-width: 1000px;
       margin: 0 auto;
-      padding: 0.5em 1em;
-      line-height: 62px;
+      padding: 1em 0.5em 0.5em 0.5em;
       text-align: center;
       /* test */
       background-color: rgba(255, 255, 255, 0.5);
@@ -87,6 +90,7 @@
 
     nav ul li {
       font-size: 20px;
+      line-height: 62px;
       padding: 0 20px;
       display: inline-block;
     }
@@ -99,14 +103,9 @@
       padding-left: 15px;
     }
 
-    nav ul li:last-child a:active {
-      font-size: 60px;
-    }
-
     /* 搜索栏，单击搜索图标出现 */
     .search {
       display: none;
-      clear: both;
     }
 
     /* ==================响应式布局================== */
