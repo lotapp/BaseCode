@@ -1,0 +1,114 @@
+    /* 去除空隙 */
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 去除列表前的点 */
+    li {
+      list-style: none;
+    }
+
+    /* 去除a标签的下划线 */
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    a:hover {
+      color: #ea5d07;
+    }
+
+    /* 清除浮动的样式 */
+    .clearfix::before,
+    .clearfix::after {
+      content: '';
+      display: table;
+      /* 以块级表格来显示元素*/
+      /* display: block; */
+    }
+
+    .clearfix::after {
+      clear: both;
+    }
+
+    /* 兼容IE */
+    .clearfix {
+      zoom: 1;
+    }
+
+
+    /* ==================网站公用样式================== */
+    body {
+      background: #f7f7f7;
+    }
+
+    /* 最上方的渐变条 */
+    body::before {
+      content: '';
+      width: 100%;
+      height: 5px;
+      background: #000 linear-gradient(to left, #4cd964, #5ac8fa, #007aff, #34aadc, #5856d6, #ff2d55);
+      position: absolute;
+      top: 0;
+    }
+
+
+    .navbox {
+      width: 50%;
+      min-width: 1000px;
+      margin: 0 auto;
+      padding: 0.5em 1em;
+      line-height: 62px;
+      text-align: center;
+      /* test */
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* header右浮动 */
+    .navbox .logo,
+    .navbox nav {
+      float: right;
+    }
+
+    /* Logo大小 */
+    .logo {
+      padding-right: 40px;
+    }
+
+    .logo a {
+      width: 260px;
+      height: 60px;
+      display: inline-block;
+      background: url(../images/logo.gif) no-repeat center;
+      /* 等比例缩放能完全放到容器为止 */
+      background-size: contain;
+    }
+
+    nav ul li {
+      font-size: 20px;
+      padding: 0 20px;
+      display: inline-block;
+    }
+
+    nav ul li:last-child a {
+      font-weight: bold;
+      font-size: 23px;
+      vertical-align: bottom;
+      cursor: pointer;
+      padding-left: 15px;
+    }
+
+    nav ul li:last-child a:active {
+      font-size: 60px;
+    }
+
+    /* 搜索栏，单击搜索图标出现 */
+    .search {
+      display: none;
+      clear: both;
+    }
+
+    /* ==================响应式布局================== */
+    /* 屏幕小于1000px使用如下CSS */
+    @media screen and (max-width: 1000px) {}
