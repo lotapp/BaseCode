@@ -3,50 +3,105 @@
 
 <head>
   <meta charset="UTF-8">
-  <!-- meta:vp -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <!-- <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
-  <title>语义化布局示例</title>
-  <link rel="stylesheet" href="../css/base.css">
-  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1135885_8dpumzzjhj6.css">
+  <title>布局演示</title>
 </head>
 
 <body>
-  <!-- 头部 -->
   <header>
-    <div class="navbox clearfix">
-      <!-- 导航栏 -->
-      <nav>
-        <!-- ul>li*8>a{$} -->
-        <ul>
-          <li><a href="#">主页</a></li>
-          <li><a href="#">资讯</a></li>
-          <li><a href="#">专业</a></li>
-          <li><a href="#">生活</a></li>
-          <li><a href="#">国学</a></li>
-          <li><a href="#">资源</a></li>
-          <li><a href="#">实验</a></li>
-          <li><a class="iconfont icon-sousuo"></a></li>
-        </ul>
-      </nav>
-      <!-- Logo(也可以是H1标题+H2次标题) -->
-      <div class="logo"><a href="#"></a></div>
-    </div>
-    <div class="search">等会做个搜索栏</div>
+    <div class="logo"></div>
+    <!-- nav>ul>li*5>a:link -->
+    <nav>
+      <ul>
+        <li><a href="#">首页</a></li>
+        <li><a href="#">资讯</a></li>
+        <li><a href="#">专业</a></li>
+        <li><a href="#">生活</a></li>
+        <li><a href="#">国学</a></li>
+        <li><a href="#">资源</a></li>
+        <li><a href="#">实验</a></li>
+      </ul>
+    </nav>
+    <div class="search"></div>
   </header>
-  <!-- 正文 -->
+  <div class="banner">
+    <!-- ul>li*5 -->
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <!-- 主体内容 -->
   <main>
-    <!-- 文章内容 -->
+    <!-- 文章部分 -->
     <article>
-      <section></section>
+      <!-- 最新文章 -->
+      <section class="new_article">
+        <header>
+          <nav>
+            <ul>
+              <li>首页</li>
+              <li>资讯</li>
+              <li>专业</li>
+              <li>生活</li>
+              <li>国学</li>
+              <li>资源</li>
+            </ul>
+          </nav>
+        </header>
+        <!-- 对应菜单的内容 -->
+        <div class="new_tabs">
+          <!-- div.new_item*5 -->
+          <div class="new_item">内容</div>
+          <div class="new_item">内容</div>
+          <div class="new_item">内容</div>
+          <div class="new_item">内容</div>
+          <div class="new_item">内容</div>
+        </div>
+      </section>
+      <!-- 文章列表 -->
+      <section class="blog_lsit">
+        <h2>推荐文章</h2>
+        <!-- ul>li*15 -->
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </section>
+      <!-- 分页栏 -->
+      <footer>
+        <!-- ul>li*5（也可以直接使用a标签） -->
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </footer>
     </article>
-    <!-- 侧边栏相关文章 -->
+    <!-- 侧边栏，相关文章 -->
+    <!-- aside>sestion*5>h2+div -->
     <aside>
-
+      <sestion>
+        <h2></h2>
+        <div></div>
+      </sestion>
+      <sestion>
+        <h2></h2>
+        <div></div>
+      </sestion>
     </aside>
   </main>
-  <!-- 尾部 -->
-  <footer>Footer</footer>
+  <!-- 尾部信息 -->
+  <footer>
+    <address>xxx</address>
+  </footer>
 </body>
 
 </html>
