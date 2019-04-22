@@ -2,7 +2,7 @@
 编程入门（NetCore、Python、Go、C++等）
 
 微信公众号：逸鹏说道（dotnetcrazy）
-![wechat](https://images2018.cnblogs.com/blog/1127869/201805/1127869-20180530164144904-1221603693.jpg)
+<img src="https://images2018.cnblogs.com/blog/1127869/201805/1127869-20180530164144904-1221603693.jpg" alt="wechat" width="446" height="443">
 
 ---
 # 说下Markdown语法
