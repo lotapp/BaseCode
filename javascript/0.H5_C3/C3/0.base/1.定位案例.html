@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>定位案例</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1148101_h5fe3ssorlk.css">
+    <style>
+        header {
+            width: 100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* 字体图标 */
+        header a.icon-guoxue {
+            /* 去除下划线 */
+            text-decoration: none;
+            color: #1a8236;
+            font-size: 100px;
+            /* 父类元素设置相对|绝对定位 */
+            position: relative;
+        }
+
+        header span {
+            position: absolute;
+            top: 15px;
+            right: -5px;
+            /* 绝对定位和固定定位的块元素和行内元素会自动转化为行内块元素 */
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
+            /* 居中显示 */
+            line-height: 30px;
+            color: white;
+            background-color: red;
+            /* 变成圆 */
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- a.iconfont.icon-guoxue>span{99} -->
+    <header>
+        <a href="#" class="iconfont icon-guoxue"><span>99</span></a>
+    </header>
+</body>
+
+</html>
