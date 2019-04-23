@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>背景尺寸</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background: url(http://github.lesschina.com/html5/images/logo.gif) no-repeat;
+            border: 1px solid black;
+        }
+
+        div:nth-child(1) {
+            /* 宽 高 */
+            background-size: 100% 50%;
+        }
+
+        div:nth-child(2) {
+            /* 等比缩放，直至宽或者高和盒子相同 */
+            background-size: contain;
+        }
+
+        div:nth-child(3) {
+            /* 等比缩放，并填充慢容器 */
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

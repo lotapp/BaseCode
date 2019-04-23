@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>结构性伪类选择器</title>
+    <style>
+        /* 本意先找到bloginfo类下的第一个div，对它第二个span设置样式 */
+
+        /* 浏览器会这么找：先去bloginfo类下的第一个div中找第二个元素，然后看看是不是span，如果是则生效 */
+        /* PS：这边父类下第二个元素不是span，所以不生效 */
+        .bloginfo div:first-child span:nth-child(2) {
+            color: red;
+        }
+
+        /* 如果需要达到这个效果可以这么用： */
+        .bloginfo div:first-child span:nth-child(4) {
+            color: red;
+        }
+
+        /* 本意先找到bloginfo类下的第二个div，对它第二个span设置样式 */
+
+        /* 浏览器会这么找：先去bloginfo类下的第二个div中找所有的span，然后给第二个span设置样式 */
+        .bloginfo div:last-child span:nth-of-type(2) {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bloginfo">
+        <div>
+            <span>逆天</span>
+            <i>this is test</i>
+            <time>2019-04-14</time>
+            <span>【Web】</span>
+        </div>
+        <!-- 和上面一样 -->
+        <div>
+            <span>逆天</span>
+            <i>this is test</i>
+            <time>2019-04-14</time>
+            <span>【Web】</span>
+        </div>
+    </div>
+</body>
+
+</html>
