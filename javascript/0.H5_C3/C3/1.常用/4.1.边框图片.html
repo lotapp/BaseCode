@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>边框图片</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            border: 50px solid black;
+            font-family: '钟齐流江毛笔草体';
+            font-size: 30px;
+            line-height: 300px;
+            /* 竖排显示(从左往右方向) */
+            writing-mode: vertical-lr;
+            text-align: center;
+            float: left;
+        }
+
+        div:nth-child(2) {
+            /* 设置边框图片 */
+            border-image-source: url(../images/1.png);
+        }
+
+        div:nth-child(3) {
+            border-image: url(../images/1.png) 54 80 62 68;
+            /* border-image-source: url(../images/1.png); */
+            /* 设置边框图片的裁切 */
+            /* border-image-slice: 54 80 62 68; */
+        }
+    </style>
+</head>
+
+<body>
+    <div>微信公众号 逸鹏说道</div>
+    <div>微信公众号 逸鹏说道</div>
+    <div>微信公众号 逸鹏说道</div>
+</body>
+
+</html>

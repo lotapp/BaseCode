@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>3d变换</title>
+    <style>
+        .grandfather {
+            width: 300px;
+            height: 300px;
+            margin: 300px auto;
+            background-color: rgba(255, 0, 0, 0.3);
+            /* 允许子元素呈现3d视图 */
+            transform-style: preserve-3d;
+        }
+
+        .parent {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 255, 0, 0.3);
+            /* 设置初始值 */
+            transform: perspective(0) translateZ(0);
+            /* 允许子元素呈现3d视图 */
+            transform-style: preserve-3d;
+            /* 设置一个补间动画 */
+            transition: all 1s ease;
+        }
+
+        .child {
+            width: 100%;
+            height: 50%;
+            background-color: rgba(0, 255, 255, 0.3);
+            /* 设置初始值 */
+            transform: perspective(0) translateZ(0);
+            /* 设置一个补间动画 */
+            transition: all 1s ease;
+        }
+
+        .parent:hover {
+            /* z轴移动200px（铺面而来） */
+            transform: perspective(800px) translateZ(200px);
+        }
+
+        .child:hover {
+            /* z轴移动200px（铺面而来） */
+            transform: perspective(800px) translateZ(100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grandfather">
+        <div class="parent">
+            <div class="child"></div>
+        </div>
+    </div>
+</body>
+
+</html>

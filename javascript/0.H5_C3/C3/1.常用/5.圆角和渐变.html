@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>圆角案例</title>
+    <style>
+        /* 椭圆矩形 */
+        div:first-child {
+            width: 200px;
+            height: 200px;
+            background: black;
+            border-radius: 10px;
+        }
+
+        /* 设置图片大小，并显示为圆 */
+        div img {
+            /* 半径是长度的50%==>圆 */
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+        }
+
+        div:last-child i {
+            display: block;
+            width: 200px;
+            height: 200px;
+            padding: 5px;
+            border-radius: 50%;
+            /* 设置一个渐变色 */
+            background: linear-gradient(to top right, rgba(0, 153, 255, .9), rgba(42, 228, 197, .7));
+        }
+    </style>
+</head>
+
+<body>
+    <div></div><br />
+    <div><img src="https://github.lesschina.com/html5/images/avatar.jpg"></div><br />
+    <div><i><img src="https://github.lesschina.com/html5/images/avatar.jpg"></i></div>
+</body>
+
+</html>

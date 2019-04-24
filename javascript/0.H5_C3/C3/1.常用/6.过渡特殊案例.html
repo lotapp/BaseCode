@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>特殊案例</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background-color: black;
+            /* 设置了transition，那div任何属性的改动都会有过渡动画 */
+            transition: all 500ms ease;
+        }
+
+        /* 第一个盒子使用visibility的方式显示和隐藏 */
+        div:first-child {
+            visibility: hidden;
+        }
+
+        body:hover div:first-child {
+            visibility: visible;
+            background-color: yellow;
+        }
+
+        /* 第二个盒子使用display的方式显示和隐藏 */
+        div:last-child {
+            display: none;
+        }
+
+        body:hover div:last-child {
+            display: block;
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div>visibility</div>
+    <div>display</div>
+</body>
+
+</html>

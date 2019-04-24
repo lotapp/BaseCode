@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>2d变换</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            float: left;
+            border: 1px solid black;
+            background-color: yellow;
+            /* 添加一个过渡动画 */
+            transition: all 1s ease;
+        }
+
+        /* x轴平移50px，y轴平移100px */
+        div:first-child:hover {
+            background-color: green;
+            /* 逗号别忘记了 */
+            transform: translate(50px, 100px);
+        }
+
+        /* x轴放大1.1倍，y轴放大2倍 */
+        div:nth-child(2):hover {
+            transform: scale(1.1, 2)
+        }
+
+        /* 旋转90度 */
+        div:last-child:hover {
+            transform: rotate(90deg)
+        }
+
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+
+</html>

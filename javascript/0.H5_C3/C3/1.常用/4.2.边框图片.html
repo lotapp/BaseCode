@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>边框图片2</title>
+    <style>
+        div {
+            width: 250px;
+            height: 250px;
+            margin-right: 20px;
+            border: 50px solid black;
+            font-size: 25px;
+            line-height: 300px;
+            /* 竖排显示(从左往右方向) */
+            writing-mode: vertical-lr;
+            text-align: center;
+            float: left;
+        }
+
+        div:first-child {
+            border-image: url(../images/2.png);
+        }
+
+        div:nth-child(2) {
+            /* 裁切20就可以把四个角的爱心完美扣下了 */
+            border-image: url(../images/2.png) 20;
+        }
+
+        div:nth-child(3) {
+            /* 设置边框图片的平铺方式 */
+            border-image: url(../images/2.png) 20 repeat;
+        }
+
+        div:last-child {
+            /* 推荐方式 */
+            border-image: url(../images/2.png) 20 round;
+        }
+    </style>
+</head>
+
+<body>
+    <div>只设置了边框图片</div>
+    <div>设置边框图片和裁切</div>
+    <div>边框平铺方式为重复</div>
+    <div>边框平铺方式为环绕</div>
+</body>
+
+</html>
