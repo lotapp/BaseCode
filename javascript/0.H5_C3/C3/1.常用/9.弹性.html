@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>弹性</title>
+    <style media="screen">
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            list-style: none;
+            border: 1px solid black;
+            background-color: yellow;
+        }
+
+        ul li:first-child {
+            /* 权重为1 */
+            flex: 1;
+        }
+
+        ul li:nth-child(2) {
+            /* 权重为2 */
+            flex: 2;
+            /* 一般都配合min-宽高来使用 */
+            min-width: 100px;
+        }
+
+        ul li:last-child {
+            /* 权重为2 */
+            flex: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+
+</html>
