@@ -1,7 +1,7 @@
 """base_demo URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+    https://docs.djangoproject.com/en/2.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,8 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
+# 项目urls配置文件
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # 设置管理后台的路径（eg：/root/）
+    path('root/', admin.site.urls),  # 可修改默认的admin
+    path('users/', include("users.urls")),  # 配置项
 ]
+
+# old Code
+# from django.conf.urls import include, url
+#
+# urlpatterns = [
+#     url(r'^admin', include(admin.site.urls)),
+#     url(r'^users', include('users.urls'))
+# ]

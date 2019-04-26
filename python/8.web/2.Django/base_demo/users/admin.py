@@ -1,9 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-# from users.models import UserInfo Py2
+# from users.models import UserInfo Django1.x
 
-from .models import UserInfo  # Py3
+from .models import UserInfo  # Django2.x
 
 
 # 自定义模型管理页面
