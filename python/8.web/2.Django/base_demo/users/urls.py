@@ -6,4 +6,5 @@ from . import views
 urlpatterns = [
     # /users/index ==> view的index处理函数
     path('index', views.index),
+    path('list', views.list),
 ]

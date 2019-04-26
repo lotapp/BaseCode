@@ -8,3 +8,8 @@ def index(request):
     print(request)
     # 响应浏览器请求（需要页面就去T拿，需要数据就去M找）
     return HttpResponse('这是users应用模块的index页面哦~')
+
+
+# 演示模版
+def list(request):
+    return render(request, "list.html", {"list": ["小明", "小张", "小潘", "小周"]})

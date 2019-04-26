@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 注册自己创建的模块|应用
+    # 注册自己创建的应用
     'users',
 ]
 
