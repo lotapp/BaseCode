@@ -6,8 +6,12 @@
 </head>
 <body>
 <ul>
-    {% for i in list %}
-        <li>{{ i }}</li>
+    {% for user in users %}
+        {# 显示用户名，这边的user就是userinfo对象 #}
+        <li>{{ user.name }}</li>
+    {% empty %}
+        {#  如果users内容为空则显示这块内容  #}
+        <li>暂时没有内容</li>
     {% endfor %}
 </ul>
 </body>

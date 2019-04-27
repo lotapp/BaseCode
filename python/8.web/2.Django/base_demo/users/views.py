@@ -12,4 +12,8 @@ def index(request):
 
 # 演示模版
 def list(request):
-    return render(request, "list.html", {"list": ["小明", "小张", "小潘", "小周"]})
+    from users.models import UserInfo
+    # 第二个参数：读取哪个模版（和net中的View("~/Views/xxx/xxx.cshtml")类似）
+    # 第三参数：传一个dict进入模版，这边的key(users)就是模版遍历的对象
+    # UserInfo.objects.all() 获取数据库中所有userinfo信息（是类名而不是对象名哦~）
+    return render(request, "list.html", {"users": UserInfo.objects.all()})
