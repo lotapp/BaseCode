@@ -1,10 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-# from users.models import UserInfo Django1.x
 
-from .models import UserInfo  # Django2.x
-
+from users.models import UserInfo
 
 # 自定义模型管理页面
 class UserInfoAdmin(admin.ModelAdmin):

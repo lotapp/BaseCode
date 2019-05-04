@@ -19,6 +19,9 @@
     - [2.Web](#2web)
         - [2.1.Django](#21django)
             - [1.django.core.exceptions.ImproperlyConfigured: mysqlclient 1.3.13 or newer is required; you have 0.9.3.](#1djangocoreexceptionsimproperlyconfigured-mysqlclient-1313-or-newer-is-required-you-have-093)
+    - [3.Spider](#3spider)
+        - [3.1.通用](#31%E9%80%9A%E7%94%A8)
+            - ['gbk' codec can't encode character '\xa0' in position 34: illegal multibyte sequence](#gbk-codec-cant-encode-character-xa0-in-position-34-illegal-multibyte-sequence)
     - [Python常见异常汇总](#python%E5%B8%B8%E8%A7%81%E5%BC%82%E5%B8%B8%E6%B1%87%E6%80%BB)
 
 # 常见异常解决方案
@@ -189,6 +192,16 @@ m = mmap.mmap(fd, 0)  # 创建映射
 解决：<https://www.cnblogs.com/dotnetcrazy/p/10779304.html>
 
 ![](https://img2018.cnblogs.com/blog/1127869/201904/1127869-20190427165605929-2070907393.png)
+
+## 3.Spider
+
+### 3.1.通用
+
+#### 'gbk' codec can't encode character '\xa0' in position 34: illegal multibyte sequence
+
+<https://www.cnblogs.com/dotnetcrazy/p/10803209.html>
+
+
 
 ## Python常见异常汇总
 
