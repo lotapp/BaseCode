@@ -96,81 +96,104 @@ class Almanac(object):
     def is_leap_year(self, year):
         """根据阳历年份查询是否是闰年"""
         return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
-
-    def __parse_leap_mon_data(self, year):
-        """解析农历数据"""
-        # 1.把10进制的数据转换成16进制的字符串
+    
+    def __get_moon_year_data(self, year):
+        """获取阴历数据的头、中间、尾"""
+        # 把10进制的数据转换成16进制的字符串
         # year - self.min_year的目的就是为了获取对应年份的下标
         moon_year_data = hex(self.moon_year_list[year - self.min_year])
-         
-        # 2.最后一位是闰几月（0代表没有闰月）
-        # 尾部：代表这一年闰月是闰几月（没有闰月则为0）
-        if moon_year_data[-1] != "0":
-            self.leap_moon = int(moon_year_data[-1], 16)  # 16进制转10进制
-        else:
-            self.leap_moon = 0  # 其实没有闰月后，闰月的天数就不需要计算了
-        
-        # 3.设置闰月的天数
-        # 十六进制开头的0会被省略了
+
+        # 十六进制开头的0被省略了
         if len(moon_year_data) == 6:
-            self.leap_moon_day = 29  # 开头是0（29天）
+            # eg：`0x07954` ==> ten_moon_year_data：`31060` ==> moon_year_data`0x7954`
+            moon_year_data = moon_year_data.replace("0x", "0")
         else:
-            self.leap_moon_day = 30  # 开头是1（30天）
+            # eg：`0x15176` ==> ten_moon_year_data：`86390` ==> moon_year_data`0x15176`
+            moon_year_data = moon_year_data.replace("0x", "")
+        
+        # print(f"Hex：0x{moon_year_data}")  # 日志输出
+
+        # 返回数据的 第一个数字 中间部分 最后一个数字
+        return moon_year_data[0], moon_year_data[1:-1], moon_year_data[-1]
     
-    def get_moon_mon_day_count(self, year, mon):
-        """获取阴历月份的天数"""
-        return 30 if self.moon_year_list[year - self.min_year] & (0x10000 >> mon) else 29
-    
-    def get_moon_year_days_list(self, year):
-        """获取该年的阴历月份天数列表（不含闰月）"""
-        return [self.get_moon_mon_day_count(year, m) for m in range(1, 13)]
-    
-    def get_moon_year_days_info(self, year):
+    def __parse_moon_year_data(self, year):
+        """解析获取的阴历数据"""
+        start, body, end = self.__get_moon_year_data(year)
+        # 第一位：要么0（29天）要么1（30天）：代表如果是闰年，多出的那个月是大月还是小月
+        # PS：其实没有闰月也就不用算闰月的天数了，我这边为了大家思路清楚，就逐一写下
+        if start == "0":
+            leap_moon_day = 29
+        else:
+            leap_moon_day = 30
+
+        # 中间部分：农历每个月有多少天（1为30，0为29）
+        # int(body, 16) => 16进制转10进制；bin() => 十进制转二进制
+        bin_data = bin(int(body, 16))  # eg：[0x]795 => 1941 => 0b11110010101
+        # PS：还记得我们说过，这个数据有点小问题吗？如果只有11个月份需要自己在头部补一个0
+        if len(bin_data) == 13:
+            bin_data = bin_data.replace("0b", "0")  # 顺便把二进制的标识去除
+        else:
+            bin_data = bin_data.replace("0b", "")
+        # 阴历每月有多少天
+        year_moon_day_list = []
+        # 农历非闰月的1~12月的天数
+        for item in bin_data:
+            if item == "0":
+                year_moon_day_list.append(29)  # 0为29
+            else:
+                year_moon_day_list.append(30)  # 1为30
+
+        # 尾部：代表这一年闰月是闰几月（没有闰月则为0）
+        if end != "0":
+            leap_moon = int(end, 16)  # 16进制转10进制
+        else:
+            leap_moon = 0
+
+        # 返回闰月是几月（0代表没有），闰月多少天，对应农历每一月有多少天
+        return leap_moon, leap_moon_day, year_moon_day_list
+
+    def get_moon_year_day_list(self, year):
         """获取闰月月份索引（0代表没有闰月）、农历每月天数（包含闰月）、该年的农历总天数
         PS：关于0代表没闰月的说明：就算是闰1月也得排1月后面，那么index也是为1
         """
-        self.__parse_leap_mon_data(year)  # 解析农历数据
-        # 获取这一年每月有多少天
-        moon_mon_days_list = self.get_moon_year_days_list(year)
-        if self.leap_moon == 0:
-            return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
+        leap_moon, leap_moon_day, year_moon_day_list = self.__parse_moon_year_data(year)
+        if leap_moon == 0:
+            return leap_moon, year_moon_day_list, sum(year_moon_day_list)
         else:
             # 把闰月插入到对应月份之后（eg：闰4月在4月后面）
-            moon_mon_days_list.insert(self.leap_moon, self.leap_moon_day)
-            return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
+            year_moon_day_list.insert(leap_moon, leap_moon_day)
+            return leap_moon, year_moon_day_list, sum(year_moon_day_list)
 
     def sun_day_to_moon_day(self, year, mon, day):
         """阳历转阴历（year参考范围：1900.1.31 ~ 2100.12.31"""
         # 这边是真正暴露给用户的地方，需要验证一下年份的上下限
-        if year > self.max_year or year < self.min_year:
+        if year > 2100 or year < 1900:
             return -1
         # 低于阴历数据的最小年
-        if (year == self.min_year and mon == 1 and day < 31):
+        if (year == 1900 and mon == 1 and day < 31):
             return -1
         # 1. 计算该年阳历1月1号对应的阴历值（偏移值）
         # 2. 根据该年里所有月份，去算出每个月第1天的偏移值
         # 3. 然后根据每个月的第1天和每月天数来推整个月
 
-
 def main():
     import random
     # 随机测试
     almanac = Almanac()
-    # for _ in range(10):
-    #     year = random.randint(1980, 2025)
-    #     # mon = random.randint(1, 12)
-    #     # print(almanac.print_words(year, mon))
-    #     print("-" * 20)
-    #     print(year, "是否是闰年", almanac.is_leap_year(year))
-    #     # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
-    #     print(almanac.get_moon_year_days_info(year))
+    for _ in range(10):
+        year = random.randint(1980, 2025)
+        # mon = random.randint(1, 12)
+        # print(almanac.print_words(year, mon))
+        print("-" * 20)
+        print(year, "是否是闰年", almanac.is_leap_year(year))
+        # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
+        print(almanac.get_moon_year_day_list(year))
     
     # 顺序测试
-    for year in range(2000, 2022):
-        # print(year, "是否是闰年", almanac.is_leap_year(year))
-        # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
-        print(f"阳历：{year}年，对应阴历月份信息：{almanac.get_moon_year_days_info(year)}")
-
-
+    # for year in range(1900, 2101):
+    #     print(year, "是否是闰年", almanac.is_leap_year(year))
+    #     # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
+    #     print(almanac.get_moon_year_day_list(year))
+    
 if __name__ == "__main__":
     main()
