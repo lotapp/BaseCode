@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Almanac(object):
     """定义一个老黄历类"""
 
@@ -15,6 +18,7 @@ class Almanac(object):
             9: ("壬", "水", "阳"),
             0: ("癸", "水", "阴")
         }
+
         # 地支映射集合
         self.earth_dict = {
             1: ("子", "鼠", "水", "阳"),  # 23~01
@@ -59,7 +63,10 @@ class Almanac(object):
         self.min_year, self.max_year = 1900, 2100
 
         # 阳历正常情况下每个月的天数
-        # self.sun_mon_day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        self.__sun_year_days_list = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        
+        # 选阳历1900年1月31号为基准日期（对应农历1900年1月1日）
+        self.base_datetime = datetime(1900, 1, 31)
 
     def __get_sky_num(self, year):
         """根据年份获取天干编号"""
@@ -93,9 +100,24 @@ class Almanac(object):
         mons = self.__mon_to_word(year, mon)
         return f"{year}年(阴历)：{skys[0]}{earths[0]}年【{earths[1]}年】\n{mon}月：{mons}月\n五行：{skys[2]}之{skys[1]}、命格：{skys[1]}{earths[1]}命"
 
-    def is_leap_year(self, year):
-        """根据阳历年份查询是否是闰年"""
-        return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
+    def __is_leap_year(self, year):
+        """查询是否是闰年（1：闰年，2月是29天；0：不是闰年，2月28天）"""
+        # 阳历的2月正常都是28天，但闰年的阳历2月是29天
+        if (year % 4 == 0 and year % 100 != 0) or year % 400 == 0:
+            return 1  # 闰年，2月是29天
+        else:
+            return 0  # 不是闰年，2月28天
+    
+    # def get_sun_mon_day_count(self, year, mon):
+    #     """获取阳历月份的天数（不需要就删掉）"""
+    #     if mon == 2:  # 闰2月是29天（比平时多一天）
+    #         return self.__sun_year_days_list[mon] + self.__is_leap_year(year)
+    #     else:
+    #         return self.__sun_year_days_list[mon]
+
+    def get_sun_year_day_count(self, year):
+        """获取该年的阳历有多少天"""
+        return sum(self.__sun_year_days_list) + self.__is_leap_year(year)
 
     def __parse_leap_mon_data(self, year):
         """解析农历数据"""
@@ -121,23 +143,29 @@ class Almanac(object):
         """获取阴历月份的天数"""
         return 30 if self.moon_year_list[year - self.min_year] & (0x10000 >> mon) else 29
     
-    def get_moon_year_days_list(self, year):
+    def __get_moon_year_days_list(self, year):
         """获取该年的阴历月份天数列表（不含闰月）"""
         return [self.get_moon_mon_day_count(year, m) for m in range(1, 13)]
     
-    def get_moon_year_days_info(self, year):
-        """获取闰月月份索引（0代表没有闰月）、农历每月天数（包含闰月）、该年的农历总天数
-        PS：关于0代表没闰月的说明：就算是闰1月也得排1月后面，那么index也是为1
-        """
+    def get_moon_year_day_count(self, year):
+        """获取该年的阴历有多少天"""
         self.__parse_leap_mon_data(year)  # 解析农历数据
-        # 获取这一年每月有多少天
-        moon_mon_days_list = self.get_moon_year_days_list(year)
-        if self.leap_moon == 0:
-            return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
-        else:
-            # 把闰月插入到对应月份之后（eg：闰4月在4月后面）
-            moon_mon_days_list.insert(self.leap_moon, self.leap_moon_day)
-            return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
+        # 阴历天数 = 12个月的天数 + 闰月天数
+        return sum(self.__get_moon_year_days_list(year)) + self.leap_moon_day
+
+    # def get_moon_year_days_info(self, year):
+    #     """获取闰月月份索引（0代表没有闰月）、农历每月天数（包含闰月）、该年的农历总天数
+    #     PS：关于0代表没闰月的说明：就算是闰1月也得排1月后面，那么index也是为1
+    #     """
+    #     self.__parse_leap_mon_data(year)  # 解析农历数据
+    #     # 获取这一年每月有多少天
+    #     moon_mon_days_list = self.__get_moon_year_days_list(year)
+    #     if self.leap_moon == 0:
+    #         return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
+    #     else:
+    #         # 把闰月插入到对应月份之后（eg：闰4月在4月后面）
+    #         moon_mon_days_list.insert(self.leap_moon, self.leap_moon_day)
+    #         return self.leap_moon, moon_mon_days_list, sum(moon_mon_days_list)
 
     def sun_day_to_moon_day(self, year, mon, day):
         """阳历转阴历（year参考范围：1900.1.31 ~ 2100.12.31"""
@@ -147,10 +175,35 @@ class Almanac(object):
         # 低于阴历数据的最小年
         if (year == self.min_year and mon == 1 and day < 31):
             return -1
-        # 1. 计算该年阳历1月1号对应的阴历值（偏移值）
-        # 2. 根据该年里所有月份，去算出每个月第1天的偏移值
-        # 3. 然后根据每个月的第1天和每月天数来推整个月
+        
+        # 需要转换的公历日期 − 公历基准 + 1 = 转换后的农历日期 − 农历基准 + 1 = 相差天数（偏移量）
+        # > **PS：对于+1的说明：今天是6.1号，明天是6.2号，2-1=1，但是实际天数确是2天**
+        
+        # 我们就选农历`1900年1月1日`为基准天 ==> 对应阳历：`1900年1月31日`
+        # > PS：为啥选1900年呢？黄帝内经里面说过，上古的人洁身自好一般都能活到120，现在人大多不爱惜自己的身体（主动或被动）所以留个美好愿景吧~
 
+        # 以求阳历`2019年1月1日`对应的农历为例：
+        # 1.算出阳历距离基准阳历的天数（偏移量）
+        # type：datetime.timedelta
+        sun_datetime = datetime(year, mon, day)
+        offset_day = (sun_datetime - self.base_datetime).days  # 43434天
+
+        # 需要转换的公历日期 − 公历基准 = 转换后的农历日期 − 农历基准
+        # 2.根据间隔天数和农历基准值来计算出农历
+        # 2.1.农历日期的年份（农历每一年的天数是不固定的）
+        # 用计算出的相差天数依次减去从农历基准开始后的每一年的农历天数，当天数<=0的时候结束循环
+        n = 0
+        for y in range(1900, year + 1):
+            offset_day -= self.get_moon_year_day_count(y)
+            n += 1  # 在农历1900年的基础上 + 1年
+            if offset_day <= 0:
+                break
+        moon_year = self.base_datetime.year + n
+        # 2.2.历日期的月份
+
+        # 2.3.农历日期的天
+
+        return moon_year
 
 def main():
     import random
@@ -166,10 +219,12 @@ def main():
     #     print(almanac.get_moon_year_days_info(year))
     
     # 顺序测试
-    for year in range(2000, 2022):
-        # print(year, "是否是闰年", almanac.is_leap_year(year))
-        # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
-        print(f"阳历：{year}年，对应阴历月份信息：{almanac.get_moon_year_days_info(year)}")
+    # for year in range(2000, 2022):
+    #     # print(year, "是否是闰年", almanac.is_leap_year(year))
+    #     # 闰月是几月（0代表没有），该年的农历每个月天数，该年农历总天数
+    #     print(f"阳历：{year}年，对应阴历月份信息：{almanac.get_moon_year_days_info(year)}")
+
+    print(almanac.sun_day_to_moon_day(2019, 1, 1))
 
 
 if __name__ == "__main__":
