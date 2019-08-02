@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // typeof运算符只能判断：数字、字符串、布尔值、undefined、函数
+    // typeof null =="object"
+    // typeof {} == "object"
+    // typeof [] == "object"
+    // typeof function () {} == "function"
+    // typeof /abc/ == "object" // 相当于：new RegExp
+    
+    // 千万不能使用typeof来判断对象的构造函数（使用`instanceof`）
+    function Person(name) {
+        this.name = name;
+    }
+    p1 = new Person("小明");
+    console.log(p1 instanceof Person);
+    </script>
+</body>
+</html>
