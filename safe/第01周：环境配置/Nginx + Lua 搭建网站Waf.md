@@ -9,7 +9,8 @@
         - [1.2.3.默认配置](#123%e9%bb%98%e8%ae%a4%e9%85%8d%e7%bd%ae)
     - [1.2.编译安装](#12%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85)
         - [1.2.1.安装编译环境](#121%e5%ae%89%e8%a3%85%e7%bc%96%e8%af%91%e7%8e%af%e5%a2%83)
-        - [1.2.2.编译安装Nginx](#122%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85nginx)
+        - [1.2.2.编译安装Lua模块](#122%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85lua%e6%a8%a1%e5%9d%97)
+        - [1.2.3.编译安装Nginx](#123%e7%bc%96%e8%af%91%e5%ae%89%e8%a3%85nginx)
 - [附录](#%e9%99%84%e5%bd%95)
     - [依赖](#%e4%be%9d%e8%b5%96)
 
@@ -133,15 +134,6 @@
 ```
 
 </details>
-
-PS：扩展模块
-
-```shell
-# 基于IP的访问控制
-http_access_module
-# 基于用户的信任登录
-http_auth_basic_module
-```
 
 ---
 
@@ -273,22 +265,42 @@ http {
 
 #### 1.2.1.安装编译环境
 
-1.Nginx使用`C/C++`编写的，安装一下依赖：`yum install gcc-c++ -y`
+一步到位：`yum install gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel -y`
 
-2.Nginx需要使用PCRE来进行正则解析：`yum install pcre pcre-devel -y`
+简单拆分解析一下：
 
-3.现在服务器和浏览器一般都是使用gzip：`yum install -y zlib zlib-devel -y`
+1. Nginx使用`C/C++`编写的，安装一下依赖：`yum install gcc-c++ -y`
+2. Nginx需要使用PCRE来进行正则解析：`yum install pcre pcre-devel -y`
+3. 现在服务器和浏览器一般都是使用gzip：`yum install -y zlib zlib-devel -y`
+4. 让Nginx支持https：`yum install openssl openssl-devel -y`
 
-4.让Nginx支持https：`yum install openssl openssl-devel -y`
-
-5.下载Nginx：`curl -o nginx.1.17.2.tar.gz https://nginx.org/download/nginx-1.17.2.tar.gz`
+下载Nginx：`curl -o nginx.1.17.2.tar.gz https://nginx.org/download/nginx-1.17.2.tar.gz`
 > PS：服务器推荐使用稳定版本，开发用最新无碍
 
 ![2.尝鲜.png](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190803214948142-1222832177.png)
 
 ![2.下载源文件.png](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190803214736774-950778757.png)
 
-#### 1.2.2.编译安装Nginx
+#### 1.2.2.编译安装Lua模块
+
+主要就3步走：
+
+1. 安装**Lua即时编译器**：`LuaJIT`
+    - 目前最新：<http://luajit.org/download/LuaJIT-2.0.5.tar.gz>
+2. 安装Nginx模块：`ngx_devel_kit` and `lua-nginx-module`
+    1. ngx_devel_kit：<https://github.com/simplresty/ngx_devel_kit/archive/v0.3.1.tar.gz>
+    2. lua-nginx-module：<https://github.com/openresty/lua-nginx-module/archive/v0.10.15.tar.gz>
+3. 重新编译Nginx：复制在线安装的**编译参数**（`nginx -V`）然后**添加两个参数**
+    1. `--add-module=/etc/nginx/modules/ngx_devel_kit-0.3.1`
+    2. `--add-module=/etc/nginx/modules/lua-nginx-module-0.10.15`
+
+完整参数附录：
+
+```shell
+./configure --prefix=/etc/nginx --sbin-path=/usr/sbin/nginx --modules-path=/usr/lib64/nginx/modules --conf-path=/etc/nginx/nginx.conf --error-log-path=/var/log/nginx/error.log --http-log-path=/var/log/nginx/access.log --pid-path=/var/run/nginx.pid --lock-path=/var/run/nginx.lock --http-client-body-temp-path=/var/cache/nginx/client_temp --http-proxy-temp-path=/var/cache/nginx/proxy_temp --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp --http-scgi-temp-path=/var/cache/nginx/scgi_temp --user=nginx --group=nginx --with-compat --with-file-aio --with-threads --with-http_addition_module --with-http_auth_request_module --with-http_dav_module --with-http_flv_module --with-http_gunzip_module --with-http_gzip_static_module --with-http_mp4_module --with-http_random_index_module --with-http_realip_module --with-http_secure_link_module --with-http_slice_module --with-http_ssl_module --with-http_stub_status_module --with-http_sub_module --with-http_v2_module --with-mail --with-mail_ssl_module --with-stream --with-stream_realip_module --with-stream_ssl_module --with-stream_ssl_preread_module --with-cc-opt='-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches -m64 -mtune=generic -fPIC' --with-ld-opt='-Wl,-z,relro -Wl,-z,now -pie' --add-module=/etc/nginx/modules/ngx_devel_kit-0.3.1 --add-module=/etc/nginx/modules/lua-nginx-module-0.10.15
+```
+
+#### 1.2.3.编译安装Nginx
 
 todo
 
@@ -299,12 +311,6 @@ todo
 ### 依赖
 
 ```shell
-[root@localhost ~]# yum install gcc-c++
-
-[root@localhost ~]# yum install pcre pcre-devel -y
-
-[root@localhost ~]# yum install -y zlib zlib-devel -y
-
-[root@localhost ~]# yum install openssl openssl-devel -y
+[root@localhost ~]# yum install gcc-c++ pcre pcre-devel zlib zlib-devel openssl openssl-devel -y
 
 ```
