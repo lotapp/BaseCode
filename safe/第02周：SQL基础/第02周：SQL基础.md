@@ -639,7 +639,7 @@ PS：SQL Server默认端口为TCP 1433
 -- 4.1.插入 help insert
 -- 自增长主键和默认值的字段可以不写
 insert into safe_db.users(username, password, email, tel, usercode, createtime, updatetime, datastatus)
-values ('dnt', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'dnt@qq.com', '18738002038', uuid(), now(), now(), 1);
+values ('mmd', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mmd@qq.com', '18738002038', uuid(), now(), now(), 1);
 
 -- 批量插入
 insert into safe_db.users(username, password, email, tel, usercode, createtime, updatetime, datastatus)
@@ -897,7 +897,7 @@ select语句执行流程：
 -- 4.1.插入 help insert
 -- 自增长主键和默认值的字段可以不写
 insert into safe_db.dbo.users(username, password, email, tel, usercode, createtime, updatetime, datastatus)
-values ('dnt', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'dnt@qq.com', '18738002038', newid(), getdate(), getdate(),
+values ('mmd', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mmd@qq.com', '18738002038', newid(), getdate(), getdate(),
         1);
 
 -- 批量插入 SQLServer一次批量插入最多1000行左右
