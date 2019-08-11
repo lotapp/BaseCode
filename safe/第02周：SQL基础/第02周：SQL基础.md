@@ -37,15 +37,19 @@
         - [4.1.MySQL](#41mysql)
             - [4.1.1.执行流程](#411%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b)
             - [4.1.2.增删改](#412%e5%a2%9e%e5%88%a0%e6%94%b9)
-            - [4.2.3.查询](#423%e6%9f%a5%e8%af%a2)
+            - [4.1.3.查询](#413%e6%9f%a5%e8%af%a2)
             - [4.1.4.视图](#414%e8%a7%86%e5%9b%be)
             - [附录](#%e9%99%84%e5%bd%95)
         - [4.2.SQLServer](#42sqlserver)
             - [4.2.1.执行流程](#421%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b)
             - [4.2.2.增删改](#422%e5%a2%9e%e5%88%a0%e6%94%b9)
-            - [4.2.3.查询](#423%e6%9f%a5%e8%af%a2-1)
-            - [附录](#%e9%99%84%e5%bd%95-1)
-    - [5.](#5)
+            - [4.2.3.查询](#423%e6%9f%a5%e8%af%a2)
+            - [附录2](#%e9%99%84%e5%bd%952)
+    - [5.扩展](#5%e6%89%a9%e5%b1%95)
+        - [5.1.MySQL](#51mysql)
+            - [other](#other)
+        - [5.3.SQLServer](#53sqlserver)
+            - [others](#others)
 
 ## 第02周
 
@@ -58,6 +62,8 @@ Code：<https://github.com/lotapp/BaseCode/tree/master/safe>
 ![目标](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190806185807094-2024433233.png)
 
 ## 1.概念（推荐）
+
+数据库系列去年就开始陆陆续续的发文，这周任务简单带过，概念部分我更新了一下，其他部分看扩展吧~
 
 ### 1.1.关系型数据库
 
@@ -417,15 +423,15 @@ drop table if exists safe_db.users;
 -- 创建表 create table users(字段名 类型 修饰符,...)
 create table if not exists safe_db.users
 (
-    id         int unsigned auto_increment,                       -- 主键，自增长【获取ID：last_insert_id()】
+    id         int unsigned auto_increment,             -- 主键，自增长【获取ID：last_insert_id()】
     username   varchar(20) not null,
-    password   char(40)    not null,                              -- sha1：40
+    password   char(40)    not null,                    -- sha1：40
     email      varchar(50) not null,
-    ucode      char(36)    not null,-- default uuid(),          -- uuid
-    createtime datetime    not null,-- default now(),
-    updatetime datetime    not null,-- default now(),
-    datastatus tinyint     not null default 0,                    -- 默认值为0
-    primary key (id),                                             -- 主键可多列
+    ucode      char(36)    not null,                    -- uuid
+    createtime datetime    not null default now(),
+    updatetime datetime    not null default now(),
+    datastatus tinyint     not null default 0,          -- 默认值为0
+    primary key (id),                                   -- 主键可多列
     unique uq_users_email (email),
     index ix_users_createtime_updatetime (createtime, updatetime) -- 索引，不指定名字默认就是字段名
 )
@@ -478,7 +484,7 @@ alter table safe_db.users
 -- 1.修改字段名：`alter table tb_name change 旧列名 新列名 类型 类型修饰符`
 -- 此时一定要重新指定该列的类型和修饰符
 alter table safe_db.users
-    change ucode usercode char(36); -- default uuid();
+    change ucode usercode char(36);
 
 -- 2.修改字段类型
 alter table safe_db.users
@@ -488,6 +494,10 @@ alter table safe_db.users
 alter table safe_db.users
     alter password set default '7c4a8d09ca3762af61e59520943dc26494f8941b';
 ```
+
+![desc](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809113219847-128954293.png)
+
+![show](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809114014950-1115612493.png)
 
 ### 3.4.SQLServer
 
@@ -639,7 +649,7 @@ PS：SQL Server默认端口为TCP 1433
 -- 4.1.插入 help insert
 -- 自增长主键和默认值的字段可以不写
 insert into safe_db.users(username, password, email, tel, usercode, createtime, updatetime, datastatus)
-values ('mmd', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'mmd@qq.com', '18738002038', uuid(), now(), now(), 1);
+values ('test', '7c4a8d09ca3762af61e59520943dc26494f8941b', 'test@qq.com', '18738002038', uuid(), now(), now(), 1);
 
 -- 批量插入
 insert into safe_db.users(username, password, email, tel, usercode, createtime, updatetime, datastatus)
@@ -661,11 +671,15 @@ where datastatus = 0;
 truncate table safe_db.users;
 ```
 
-#### 4.2.3.查询
+#### 4.1.3.查询
+
+`file_records`的建表语句我放在附录了，这边只谈语法
+> PS：查询相关的帮助文档：`help select`
+
+1.**查询来源url**
 
 ```sql
--- 数据构造见附录
--- 4.4.查询 help select
+use safe_db;
 
 -- 查询来源url（去重后）
 select distinct url
@@ -675,24 +689,45 @@ from file_records;
 select url
 from file_records
 group by url;
+```
 
+![r1](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809114655264-2087960621.png)
+
+2.**统计url出现的次数**
+
+```sql
 -- 分别统计一下url出现的次数（分组+聚合）
 -- 分组一般都和聚合函数一起使用
 select url, count(*) as count
 from file_records
 group by url;
 
--- 分别统计一下url出现的次数，已经删除的文件不算进去
+-- 分别统计一下url出现的次数大于1次的url（删除的不统计）
 select url, count(*) as count
 from file_records
+where datastatus = 1 -- 99代表删除的数据
 group by url
-having count > 3; -- 在group by的结果上筛选
+having count > 1; -- 在group by的结果上筛选
+```
 
+![r2](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809114852367-1981233563.png)
+
+![r3](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809115228315-1681031918.png)
+
+3.**统计一下url出现的次数并查出对应的id**
+
+```sql
 -- 分别统计一下url出现的次数并查出对应的id
 select group_concat(id) as ids, url
 from file_records
 group by url;
+```
 
+![r4](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809115331828-1782495074.png)
+
+4.**查询上传文件的用户详细信息，并按文件名降序排序**
+
+```sql
 -- 内连接查询 innet join tb_name on 关联条件
 select file_records.id,
        users.id                   as uid,
@@ -707,12 +742,24 @@ from users
 where users.datastatus = 1
   and file_records.datastatus = 1
 order by file_records.file_name desc; -- 文件名降序排序
+```
 
+![r5](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809115517083-87803324.png)
+
+5.**查询前五条文件上传信息**
+
+```sql
 -- MySQL没有`select top n`语法，可以使用 limit来实现，eg：top 5
 select *
 from file_records
 limit 5; -- limit 0,5
+```
 
+![r6](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809115744205-2070605251.png)
+
+6.**分页查询相关**
+
+```sql
 -- 分页查询
 -- page:1,count=5 ==> 0,5 ==> (1-1)*5,5
 -- page:2,count=5 ==> 5,5 ==> (2-1)*5,5
@@ -757,7 +804,13 @@ from file_records
          inner join users on file_records.user_id = users.id
 order by username desc, file_name desc
 limit 10,5; -- 先order by排完序，然后再取第三页的5个数据
+```
 
+![r7](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809115707302-1104910051.png)
+
+7.**连接查询**
+
+```sql
 -- 查找一下从来没上传过文件的用户
 -- right join：以右边表（users）为基准连接
 select file_records.id            as fid,
@@ -807,6 +860,8 @@ from safe_db.view_userinfo;
 drop view if exists view_userinfo;
 ```
 
+![view](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190809120210519-2018196601.png)
+
 #### 附录
 
 知识点：
@@ -846,8 +901,8 @@ select round(3.12345, 4);
 
 ```sql
 -- 编号，文件名，文件MD5，Meta(媒体类型)，当前用户，请求IP，来源地址，请求时间，数据状态
-drop table if exists file_records;
-create table if not exists file_records
+drop table if exists safe_db.file_records;
+create table if not exists safe_db.file_records
 (
     id         int unsigned auto_increment primary key,
     file_name  varchar(100)     not null,
@@ -861,7 +916,7 @@ create table if not exists file_records
 );
 
 -- 可以插入2~3次（方便下面演示）
-insert into file_records(file_name, md5, meta_type, user_id, ip, url, createtime, datastatus)
+insert into safe_db.file_records(file_name, md5, meta_type, user_id, ip, url, createtime, datastatus)
 values ('2.zip', '3aa2db9c1c058f25ba577518b018ed5b', 2, 1, inet_aton('43.226.128.3'), 'http://baidu.com', now(), 1),
        ('3.rar', '6f401841afd127018dad402d17542b2c', 3, 3, inet_aton('43.224.12.3'), 'http://qq.com', now(), 1),
        ('7.jpg', 'fe5df232cafa4c4e0f1a0294418e5660', 4, 5, inet_aton('58.83.17.3'), 'http://360.cn', now(), 1),
@@ -1007,7 +1062,7 @@ select id, username, password, email, tel, datastatus
 from view_userinfo;
 ```
 
-#### 附录
+#### 附录2
 
 知识点：
 
@@ -1059,4 +1114,83 @@ values ('2.zip', '3aa2db9c1c058f25ba577518b018ed5b', 2, 1, 736264195, 'http://ba
        ('大马.jsp', 'abbed9dcc76a02f08539b4d852bd26ba', 9, 4, 3702877362, 'http://baidu.com', getdate(), 99);
 ```
 
-## 5.
+## 5.扩展
+
+### 5.1.MySQL
+
+**聊聊数据库~1.开篇**（主要是NoSQL）
+> <https://www.cnblogs.com/dotnetcrazy/p/9690466.html>
+
+**聊聊数据库~2.SQL环境篇**：
+> <https://www.cnblogs.com/dotnetcrazy/p/9887708.html>
+
+**聊聊数据库~3.SQL基础篇**：
+> <https://www.cnblogs.com/dotnetcrazy/p/10399838.html>
+
+**聊聊数据库~4.SQL优化篇**：
+> <https://www.cnblogs.com/dotnetcrazy/p/10416523.html>
+
+**聊聊数据库~5.SQL运维上篇**：
+> <https://www.cnblogs.com/dotnetcrazy/p/10810798.html>
+
+**聊聊数据库~6.SQL运维中篇**：
+> <https://www.cnblogs.com/dotnetcrazy/p/11029323.html>
+
+#### other
+
+**CentOS7安装MySQL8.0小计**：
+> <https://www.cnblogs.com/dotnetcrazy/p/10871352.html>
+
+**MySQL的SQL_Mode修改小计**：<https://www.cnblogs.com/dotnetcrazy/p/10374091.html>
+
+**MySQL5.7.26 忘记Root密码小计**：
+> <https://www.cnblogs.com/dotnetcrazy/p/11027732.html>
+
+小计：协同办公衍生出的需求：
+> <https://www.cnblogs.com/dotnetcrazy/p/10481483.html>
+
+IDE相关：**JetBrains全家桶破解思路**（最新更新：2019-08-01）：
+> <https://www.cnblogs.com/dotnetcrazy/p/9711763.html>
+
+### 5.3.SQLServer
+
+**SQLServer性能优化之----强大的文件组----分盘存储**（水平分库）
+> <https://www.cnblogs.com/dunitian/p/5276431.html>
+
+**SQLServer性能优化之---水平分库扩展**：
+> <https://www.cnblogs.com/dunitian/p/6078512.html>
+
+**SQLServer性能优化之---分表分库技术**（同义词+链接服务器）
+> <https://www.cnblogs.com/dunitian/p/6041745.html>
+
+**SQLServer性能优化之---数据库级日记监控**（XEVENT）
+> <https://www.cnblogs.com/dotnetcrazy/p/11166516.html>
+
+PS：逆天以前整理的**SQLServer脚本**：
+> <https://github.com/lotapp/BaseCode/tree/master/database/SQL/SQLServer>
+
+#### others
+
+**我为NET狂官方面试题-数据库篇答案**：
+> <https://www.cnblogs.com/dunitian/p/6041323.html>
+
+**牛逼的OSQL----大数据导入**：
+> <https://www.cnblogs.com/dunitian/p/5276449.html>
+
+**数据库改名系列**（数据库名，逻辑名，物理文件名）
+> <https://www.cnblogs.com/dunitian/p/6165998.html>
+
+**SQLServer文件收缩-图形化+命令**：
+> <https://www.cnblogs.com/dunitian/p/6047709.html>
+
+**数据库分离附加**（附日记丢失的处理）
+> <https://www.cnblogs.com/dunitian/p/6165945.html>
+
+**数据库备份相关**：
+> <https://www.cnblogs.com/dunitian/p/6260481.html>
+
+**利用SQLServer数据库发送邮件**：
+> <https://www.cnblogs.com/dunitian/p/6022826.html>
+
+【**恢复挂起的解决方案**】附加文件时候的提示“无法重新生成日志，原因是数据库关闭时存在打开的事务/用户，该数据库没有检查点或者该数据库是只读的。”【数据库恢复】
+> <https://www.cnblogs.com/dunitian/p/6197051.html>
