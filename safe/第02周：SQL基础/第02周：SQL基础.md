@@ -428,8 +428,8 @@ create table if not exists safe_db.users
     password   char(40)    not null,                    -- sha1：40
     email      varchar(50) not null,
     ucode      char(36)    not null,                    -- uuid
-    createtime datetime    not null default now(),
-    updatetime datetime    not null default now(),
+    createtime datetime    not null, -- default now(),
+    updatetime datetime    not null, -- default now(),
     datastatus tinyint     not null default 0,          -- 默认值为0
     primary key (id),                                   -- 主键可多列
     unique uq_users_email (email),
