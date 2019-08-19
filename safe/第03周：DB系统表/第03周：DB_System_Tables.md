@@ -32,9 +32,9 @@
         - [root权限通过mysql.user查询更详细权限信息](#root%e6%9d%83%e9%99%90%e9%80%9a%e8%bf%87mysqluser%e6%9f%a5%e8%af%a2%e6%9b%b4%e8%af%a6%e7%bb%86%e6%9d%83%e9%99%90%e4%bf%a1%e6%81%af)
         - [扩展](#%e6%89%a9%e5%b1%95)
     - [5.hashcat初探](#5hashcat%e5%88%9d%e6%8e%a2)
-      - [参数说明](#%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e)
-      - [攻击模式](#%e6%94%bb%e5%87%bb%e6%a8%a1%e5%bc%8f)
-      - [Hash类型](#hash%e7%b1%bb%e5%9e%8b)
+      - [5.1.参数说明](#51%e5%8f%82%e6%95%b0%e8%af%b4%e6%98%8e)
+      - [5.2.攻击模式](#52%e6%94%bb%e5%87%bb%e6%a8%a1%e5%bc%8f)
+      - [5.3.Hash类型](#53hash%e7%b1%bb%e5%9e%8b)
     - [附录](#%e9%99%84%e5%bd%95)
       - [1.获取系统信息](#1%e8%8e%b7%e5%8f%96%e7%b3%bb%e7%bb%9f%e4%bf%a1%e6%81%af)
       - [2.获取DB信息](#2%e8%8e%b7%e5%8f%96db%e4%bf%a1%e6%81%af)
@@ -547,7 +547,7 @@ PS：Win下：`hashcat64.exe -a 0 -m 300 test.hash test.dict --show`
 
 ![](https://img2018.cnblogs.com/blog/1127869/201908/1127869-20190819014735317-1165726062.png)
 
-#### 参数说明
+#### 5.1.参数说明
 
 ```shell
 -a 指定要使用的破解模式，其值参考后面对参数。“-a 0”字典攻击，“-a 1” 组合攻击；“-a 3”掩码攻
@@ -565,7 +565,7 @@ PS：Win下：`hashcat64.exe -a 0 -m 300 test.hash test.dict --show`
 -r    使用自定义破解规则
 ```
 
-#### 攻击模式
+#### 5.2.攻击模式
 
 ```shell
 0 = Straight （字典破解）
@@ -587,7 +587,7 @@ PS：Win下：`hashcat64.exe -a 0 -m 300 test.hash test.dict --show`
 8 = Prince（王子破解）
 ```
 
-#### Hash类型
+#### 5.3.Hash类型
 
 ```shell
 0 = MD5
